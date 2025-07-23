@@ -1,10 +1,13 @@
 import java.util.Scanner;
 
-/* 
- * Will prompt the user for their character's name, class, and race
- * Used by the Character class to create a new character
+/**
+ * CharacterCreation is a utility class for creating a new Character object based on user input through the console. 
+ * It prompts the player to enter a character name, select a class from available options (wizard, cleric, warlock,
+ * eldritch knight), and choose a race (elf, human, dwarf).
+ * 
+ * The class handles ambiguous responses using the StringUtil.interpretUserInput method to clarify what the user
+ * meant in certain situations for the class and race. 
  */
-
 public class CharacterCreation {
     
     public static Character create() {
@@ -19,27 +22,38 @@ public class CharacterCreation {
 
     private static String charName(Scanner console) {
         System.out.print("What is your character's name? ");
-        String charName = console.next();
+        String charName = console.nextLine();
         return charName;
     }
 
     private static String charClass(Scanner console){
-        System.out.print("There are four classes you can choose from: wizard, cleric, warlock, or eldritch kight. ");
+        System.out.print("There are four classes you can choose from: wizard, cleric, warlock, or eldritch knight. ");
         int classAccepted = 0;
         /* Will loop until the player picks a valid class */
         while(classAccepted == 0){
             System.out.print("What is your character's class? ");
-            String charClass = console.next().toLowerCase();
-            if(charClass.equals("wizard") || charClass.equals("wiz")){
+            String charClass = console.nextLine().toLowerCase();
+            if(charClass.equals("wizard")){
                 return "Wizard";
-            } else if(charClass.equals("cleric") || charClass.equals("c")){
+            } else if(charClass.equals("cleric")){
                 return "Cleric";
-            } else if(charClass.equals("warlock") || charClass.equals("war")){
+            } else if(charClass.equals("warlock")){
                 return "Warlock";
-            }  else if(charClass.equals("eldirtch_kight") || charClass.equals("eldritch") || charClass.equals("e") || charClass.equals("ek")){
-                return "Eldritch Kight";
+            }  else if(charClass.equals("eldritch knight")){
+                return "Eldritch knight";
             } else {
-                System.out.println("That is not one of the options. Please pick one of the provided options.");
+                String guess = StringUtil.interpretUserInput(new String[]{"wizard", "cleric", "warlock", "eldritch knight"}, charClass);
+                if(guess.equals("Invalid Input")) {
+                    System.out.println("You're input was unclear. Please retype your class. ");
+                } else {
+                    System.out.println("Did you mean " + guess + "? (y/n) ");
+                    String response = console.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")) {
+                        return guess.substring(0,1).toUpperCase() + guess.substring(1);
+                    } else {
+                        System.out.println("Please pick one of the classes: wizard, cleric, warlock, or eldritch knight. ");
+                    }
+                }
             }
         }
         return "error";
@@ -51,15 +65,26 @@ public class CharacterCreation {
         /* Will loop until the player picks a valid race */
         while(classAccepted == 0){
             System.out.print("What is your character's race? ");
-            String race = console.next().toLowerCase();
-            if(race.equals("elf") || race.equals("e")){
+            String race = console.nextLine().toLowerCase();
+            if(race.equals("elf")){
                 return "Elf";
-            } else if(race.equals("human") || race.equals("h")){
+            } else if(race.equals("human")){
                 return "Human";
-            } else if(race.equals("dwarf") || race.equals("d")){
+            } else if(race.equals("dwarf")){
                 return "Dwarf";
             } else {
-                System.out.println("That is not one of the options. Please pick one of the provided options.");
+                String guess = StringUtil.interpretUserInput(new String[]{"elf", "human", "dwarf"}, race);
+                if(guess.equals("Invalid Input")) {
+                    System.out.println("You're input was unclear. Please retype your class. ");
+                } else {
+                    System.out.println("Did you mean " + guess + "? (y/n) ");
+                    String response = console.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")) {
+                        return guess.substring(0,1).toUpperCase() + guess.substring(1);
+                    } else {
+                        System.out.println("Please pick one of the races: elf, human, or dwarf. ");
+                    }
+                }
             }
         }        
         return "error";

@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class StringUtilTest {
+public class StringUtilTests {
 
     @Test
     public void testValidUniqueMatch() {
