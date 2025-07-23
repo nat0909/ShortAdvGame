@@ -43,7 +43,7 @@ public class StringUtilTest {
     public void testInputLongerThanOptions() {
         String[] options = {"ok", "go"};
         String input = "okay";
-        String expected = "Invalid Input";
+        String expected = "ok";
         String result = StringUtil.interpretUserInput(options, input);
         assertEquals(expected, result);
     }

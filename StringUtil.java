@@ -14,7 +14,8 @@ public class StringUtil {
 
         for(int letter = 0; letter < input.length(); letter++) {
             for(int option = 0; option < options.length; option++){
-                if(options[option].charAt(letter) == input.charAt(letter)) { 
+                String curOption = options[option];
+                if(curOption.length() > letter && curOption.charAt(letter) == input.charAt(letter)) { 
                     possibleOptions[option]++;
                 }
             }
