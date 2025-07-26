@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.Method;
 
 public class CharacterCreationTests {
 
@@ -152,6 +153,22 @@ public class CharacterCreationTests {
         Character c = CharacterCreation.create();
         String expected = "Name: Zana\nClass: Cleric\nRace: Elf";
         assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testCalcHealthUsingReflection() throws Exception {
+        Method method = CharacterCreation.class.getDeclaredMethod("calcHealth", String.class, String.class);
+        method.setAccessible(true);
+        int result = (int) method.invoke(null, "Cleric", "Human");
+        assertEquals(26, result);
+    }
+
+    @Test
+    public void testCalcSpeedUsingReflection() throws Exception {
+        Method method = CharacterCreation.class.getDeclaredMethod("calcSpeed", String.class);
+        method.setAccessible(true);
+        int result = (int) method.invoke(null, "Elf");
+        assertEquals(40, result);
     }
 
 }

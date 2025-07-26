@@ -16,7 +16,10 @@ public class CharacterCreation {
         String charClass = charClass(s);
         String charRace = charRace(s);
         s.close();
-        Character c = new Character(charName, charClass, charRace);
+
+        int health = calcHealth(charClass, charRace);
+        int speed = calcSpeed(charRace);
+        Character c = new Character(charName, charClass, charRace, health, speed);
         return c;
     }
 
@@ -88,6 +91,36 @@ public class CharacterCreation {
             }
         }        
         return "error";
+    }
+
+    private static int calcHealth(String charClass, String charRace) {
+        int health = 20;
+
+        if(charClass.equals("Cleric")) {
+            health += 4;
+        } else if(charClass.equals("Eldritch knight")) {
+            health += 6;
+        }
+
+        if(charRace.equals("Human")) {
+            health += 2;
+        } else if(charRace.equals("Dwarf")) {
+            health += 6;
+        }
+
+        return health;
+    }
+
+    private static int calcSpeed(String charRace) {
+        int speed = 30;
+
+        if(charRace.equals("Elf")) {
+            speed += 10;
+        } else if(charRace.equals("Human")) {
+            speed += 5;
+        }
+        
+        return speed;
     }
 
 }
