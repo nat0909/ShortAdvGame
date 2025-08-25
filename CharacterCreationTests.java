@@ -168,7 +168,7 @@ public class CharacterCreationTests {
         Method method = CharacterCreation.class.getDeclaredMethod("calcSpeed", String.class);
         method.setAccessible(true);
         int result = (int) method.invoke(null, "Elf");
-        assertEquals(40, result);
+        assertEquals(8, result);
     }
 
 }

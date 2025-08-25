@@ -5,7 +5,7 @@
 Wizard:
 - Advanced Attack Magic
 - Basic Defensive Magic
-- Teleportation Spell
+- Relocate Spell (can be used on enemeis, allies, or oneself)
 - Uses a Wand
 
 Cleric:
@@ -42,3 +42,10 @@ Human:
 
 Dwarf:
 - Extra Health
+
+// Each senario is 50 long, if the player makes it past position 0 (the beginning) or 50, they exit the senario, but any remaining monsters will remain there
+
+Senario:
+_ _ _ _ + _ _ _ _ + _ _ _ _ o _ _ _ _ + _ _ _ _ o _ _ _ _ + _ _ _ _ + _ _ _ _ + _ _ _ _ + _ _ _ _ + 
+Each symbol represents a square (each square takes one movement)
+The o are places the character starts, and monsters can start on + or o, but not the o the character is occupying

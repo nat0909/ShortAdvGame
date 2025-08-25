@@ -112,12 +112,12 @@ public class CharacterCreation {
     }
 
     private static int calcSpeed(String charRace) {
-        int speed = 30;
+        int speed = 4;
 
         if(charRace.equals("Elf")) {
-            speed += 10;
+            speed += 4;
         } else if(charRace.equals("Human")) {
-            speed += 5;
+            speed += 2;
         }
         
         return speed;

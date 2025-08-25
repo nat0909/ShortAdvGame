@@ -58,8 +58,8 @@ public class Spells {
 
     // Wizard specific spell
 
-    public static int teleportation(int level) { // Takes a bonus action to cast, allows you to teleport a certain distance away                         
-        return 50 + level * 5; // Number of feet your character can teleport
+    public static int relocate(int level) { // Takes a bonus action to cast, allows you to teleport a certain distance in any direction                      
+        return 2 + level * 2; // Number of feet your character can teleport an enemy in any direction
     }
     
 }
