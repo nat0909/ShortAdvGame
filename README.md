@@ -6,12 +6,12 @@ Wizard:
 - Advanced Attack Magic
 - Basic Defensive Magic
 - Relocate Spell (can be used on enemeis, allies, or oneself)
-- Uses a Wand
+- Uses a Wand (can't melee)
 
 Cleric:
-- Advanced Healing Magic
 - Basic Attack Magic
 - Basic Defense Magic
+- Advanced Healing Magic
 - Uses a Mace
 - Little Extra Health
 

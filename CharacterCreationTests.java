@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CharacterCreationTests {
 
@@ -169,6 +171,84 @@ public class CharacterCreationTests {
         method.setAccessible(true);
         int result = (int) method.invoke(null, "Elf");
         assertEquals(8, result);
+    }
+
+    @Test
+    public void testWizardOptions() {
+        String input = "Wizard\nillusion\n";
+        Scanner scanner = new Scanner(input);
+
+        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
+
+        assertEquals(6, options.size());
+        assertTrue(options.contains("move"));
+        assertTrue(options.contains("fireball"));
+        assertTrue(options.contains("lighteningStrike"));
+        assertTrue(options.contains("thunderWave"));
+        assertTrue(options.contains("illusion"));
+        assertTrue(options.contains("relocate"));
+    }
+    
+    @Test
+    public void testClericOptions() {
+        String input = "Cleric\nfireball\nmana shield\n";
+        Scanner scanner = new Scanner(input);
+
+        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
+
+        assertEquals(7, options.size());
+        assertTrue(options.contains("move"));
+        assertTrue(options.contains("fireball"));
+        assertTrue(options.contains("quickPatch"));
+        assertTrue(options.contains("restore"));
+        assertTrue(options.contains("adrenaline"));
+        assertTrue(options.contains("mana shield"));
+        assertTrue(options.contains("meleeAttack"));
+    }
+
+    @Test
+    public void testWarlockOptions() {
+        String input = "Warlock\nrestore\n";
+        Scanner scanner = new Scanner(input);
+
+        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
+
+        assertEquals(7, options.size());
+        assertTrue(options.contains("move"));
+        assertTrue(options.contains("fireball"));
+        assertTrue(options.contains("lighteningStrike"));
+        assertTrue(options.contains("thunderWave"));
+        assertTrue(options.contains("restore"));
+        assertTrue(options.contains("mindControl"));
+        assertTrue(options.contains("meleeAttack"));
+    }
+
+    @Test
+    public void testEldritchKnightOptions() {
+        String input = "Eldritch Knight\nquick patch\n";
+        Scanner scanner = new Scanner(input);
+
+        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
+
+        assertEquals(7, options.size());
+        assertTrue(options.contains("move"));
+        assertTrue(options.contains("manaShield"));
+        assertTrue(options.contains("illusion"));
+        assertTrue(options.contains("invisibility"));
+        assertTrue(options.contains("quick patch"));
+        assertTrue(options.contains("meleeAttack"));
+        assertTrue(options.contains("raiseShield"));
+    }
+
+    @Test
+    public void testInvalidClass() {
+        String input = "Bard\n";
+        Scanner scanner = new Scanner(input);
+
+        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
+
+        assertEquals(1, options.size());  // Only "Move" should be added
+        assertTrue(options.contains("move"));
     }
 
 }

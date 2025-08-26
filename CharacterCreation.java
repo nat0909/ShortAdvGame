@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -15,12 +16,14 @@ public class CharacterCreation {
         String charName = charName(s);
         String charClass = charClass(s);
         String charRace = charRace(s);
+        ArrayList<String> options = createPlayerOptions(s);
         s.close();
 
         int health = calcHealth(charClass, charRace);
         int speed = calcSpeed(charRace);
-        Character c = new Character(charName, charClass, charRace, health, speed);
-        return c;
+
+        Character character = new Character(charName, charClass, charRace, health, speed, options);
+        return character;
     }
 
     private static String charName(Scanner console) {
@@ -35,7 +38,7 @@ public class CharacterCreation {
         /* Will loop until the player picks a valid class */
         while(classAccepted == 0){
             System.out.print("What is your character's class? ");
-            String charClass = console.nextLine().toLowerCase();
+            String charClass = console.nextLine().trim().toLowerCase();
             if(charClass.equals("wizard")){
                 return "Wizard";
             } else if(charClass.equals("cleric")){
@@ -50,7 +53,7 @@ public class CharacterCreation {
                     System.out.println("You're input was unclear. Please retype your class. ");
                 } else {
                     System.out.println("Did you mean " + guess + "? (y/n) ");
-                    String response = console.nextLine().toLowerCase();
+                    String response = console.nextLine().trim().toLowerCase();
                     if(response.equals("y") || response.equals("yes")) {
                         return guess.substring(0,1).toUpperCase() + guess.substring(1);
                     } else {
@@ -68,7 +71,7 @@ public class CharacterCreation {
         /* Will loop until the player picks a valid race */
         while(classAccepted == 0){
             System.out.print("What is your character's race? ");
-            String race = console.nextLine().toLowerCase();
+            String race = console.nextLine().trim().toLowerCase();
             if(race.equals("elf")){
                 return "Elf";
             } else if(race.equals("human")){
@@ -81,7 +84,7 @@ public class CharacterCreation {
                     System.out.println("You're input was unclear. Please retype your class. ");
                 } else {
                     System.out.println("Did you mean " + guess + "? (y/n) ");
-                    String response = console.nextLine().toLowerCase();
+                    String response = console.nextLine().trim().toLowerCase();
                     if(response.equals("y") || response.equals("yes")) {
                         return guess.substring(0,1).toUpperCase() + guess.substring(1);
                     } else {
@@ -92,6 +95,90 @@ public class CharacterCreation {
         }        
         return "error";
     }
+
+    public static ArrayList<String> createPlayerOptions(Scanner console) {
+        System.out.println("You will pick your spells based on your class.");
+        ArrayList<String> options = new ArrayList<>();
+
+        options.add("move");
+
+        System.out.println("Choose your class (Wizard, Cleric, Warlock, Eldritch Knight):");
+        String playerClass = console.nextLine().trim().toLowerCase();
+
+        switch (playerClass) {
+            case "wizard":
+                // Advanced Attack Magic
+                options.add("fireball");
+                options.add("lighteningStrike");
+                options.add("thunderWave");
+
+                // Basic Defensive Magic
+                System.out.println("Choose one defensive spell (mana shield, illusion, invisibility):");
+                options.add(console.nextLine().trim().toLowerCase());
+
+                // Relocate Spell
+                options.add("relocate");
+                
+                // Gear: Wand (can't melee)
+                break;
+
+            case "cleric":
+                // Basic Attack Magic
+                System.out.println("Choose one attack spell (fireball, lightening strike, thunder wave):");
+                options.add(console.nextLine().trim().toLowerCase());
+
+                // Advanced Healing Magic
+                options.add("quickPatch");
+                options.add("restore");
+                options.add("adrenaline");
+
+                // Basic Defensive Magic
+                System.out.println("Choose one defensive spell (mana shield, illusion, invisibility):");
+                options.add(console.nextLine().trim().toLowerCase());
+                
+                // Gear: Mace
+                options.add("meleeAttack");
+                break;
+
+            case "warlock":
+                // Advanced Attack Magic
+                options.add("fireball");
+                options.add("lighteningStrike");
+                options.add("thunderWave");
+
+                // Basic Healing Magic
+                System.out.println("Choose one healing spell (quick patch, restore, adrenaline):");
+                options.add(console.nextLine().trim().toLowerCase());
+
+                // Mind Control
+                options.add("mindControl");
+                
+                // Gear: Staff
+                options.add("meleeAttack");
+                break;
+
+            case "eldritch knight":
+                // Advanced Defensive Magic
+                options.add("manaShield");
+                options.add("illusion");
+                options.add("invisibility");
+
+                // Basic Healing Magic
+                System.out.println("Choose one healing spell (quick patch, restore, adrenaline):");
+                options.add(console.nextLine().trim().toLowerCase());
+                
+                // Gear: Longsword and Shield
+                options.add("meleeAttack");
+                options.add("raiseShield");
+                break;
+
+            default:
+                System.out.println("Invalid class. No options assigned.");
+        }
+
+        return options;
+    }
+
 
     private static int calcHealth(String charClass, String charRace) {
         int health = 20;

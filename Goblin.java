@@ -4,7 +4,7 @@ public class Goblin extends Creature {
     private int level;
 
     public Goblin(int level) {
-        super(5 + level, 5); // Goblins have a max health of 5 + their level and speed of 5
+        super(5 + level, 5, true); // Goblins have a max health of 5 + their level and speed of 5
         this.level = level;
     }
 
@@ -21,23 +21,32 @@ public class Goblin extends Creature {
 
     }
 
-    private int daggerAttack(boolean bonusAttack) {  
+    public int daggerAttack(boolean bonusAttack) {  
         if(bonusAttack) {
             return 1 + level / 2; // Goblin's dagger attack when using a bonus action
         } 
         return 3 + level; // Goblin's dagger attack when using an action
     }
 
-    private int slingAttack() {
+    public int slingAttack() {
         return level;
     }
 
-    private int move(int distance) { // Distance from char
+    public int move(int position, int charPosition) { // Distance from char
+        int distance = Math.abs(position - charPosition);        
         int maxMove = super.getSpeed();
+        int move = 0;
+
         if(distance <= maxMove + 1) { // Distance includes the sqaure the char is on
-            return distance - 1; // Can't move onto the same square as the char
+            move = distance - 1; // Can't move onto the same square as the char
         } else {
-            return maxMove;
+            move = maxMove;
+        }
+
+        if(charPosition < position) { // Character is behind goblin
+            return position - move;
+        } else { // Character is in front of goblin
+            return position + move;
         }
     }
 }

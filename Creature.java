@@ -2,15 +2,15 @@
 
 public class Creature {
     private int maxHealth;
+    private int health;
     private int speed;
+    private boolean hostile;  
 
-    private int health;  
-
-    public Creature(int maxHealth, int speed) {
+    public Creature(int maxHealth, int speed, boolean hostile) {
         this.maxHealth = maxHealth;
-        this.speed = speed;
-
         health = maxHealth;
+        this.speed = speed;
+        this.hostile = hostile;
     }
 
     public int getHealth() {
@@ -19,6 +19,10 @@ public class Creature {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public boolean getHostile() {
+        return hostile;
     }
 
     public boolean setHealth(int changeInHealth, boolean tempHealth) {

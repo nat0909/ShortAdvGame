@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class SenarioTests {
     private Senario normalSenario;
@@ -8,34 +9,52 @@ public class SenarioTests {
     
     @Before
     public void setUp() {
-        String[] monsters = {"Goblin", "Orc", "Troll"};
-        normalSenario = new Senario(monsters, false);
-        ambushSenario = new Senario(monsters, true);
+        Creature[] monsters = new Creature[3];
+        Character character = new Character("", "", "", 30, 6, new ArrayList<>()); // TODO: fill params
+        monsters[0] = new Goblin(1);
+        monsters[1] = new Goblin(2);
+        monsters[2] = new Goblin(2);
+        
+        normalSenario = new Senario(monsters, character, false);
+        ambushSenario = new Senario(monsters, character, true);
     }
 
     @Test
     public void testNormalSenarioCharacterPosition() {
-        // Test that character starts at position 15 in normal scenario
         assertEquals(15, normalSenario.getPositions()[0]);
     }
 
     @Test
     public void testAmbushSenarioCharacterPosition() {
-        // Test that character starts at position 25 in ambush scenario
         assertEquals(25, ambushSenario.getPositions()[0]);
     }
 
     @Test
-    public void testCreaturesArrayContainsCharacter() {
-        // Test that first element is "Character"
-        assertEquals("Character", normalSenario.getCreatures()[0]);
+    public void testNormalMonstersPositioning() {
+        int[] positions = normalSenario.getPositions();
+        // All monsters should be in front of character
+        for (int i = 1; i < positions.length; i++) {
+            assertTrue(positions[i] > positions[0]);
+        }
+        // Check spacing between monsters
+        assertEquals(5, positions[2] - positions[1]);
+        assertEquals(5, positions[3] - positions[2]);
     }
 
     @Test
-    public void testMonstersPositionedCorrectly() {
-        // Test monster positioning in normal scenario
-        int[] positions = normalSenario.getPositions();
-        assertTrue(positions[1] > positions[0]); // First monster should be ahead of character
-        assertEquals(5, positions[2] - positions[1]); // Monsters should be 5 spaces apart
+    public void testAmbushMonstersPositioning() {
+        int[] positions = ambushSenario.getPositions();
+        // Check alternating positions (front/back)
+        assertTrue(positions[1] > positions[0]); // First monster in front
+        assertTrue(positions[2] < positions[0]); // Second monster behind
+        assertTrue(positions[3] > positions[0]); // Third monster in front
+    }
+
+    @Test
+    public void testArrayLengths() {
+        assertEquals(4, normalSenario.getCreatures().length);
+        assertEquals(4, normalSenario.getPositions().length);
+        assertEquals(4, ambushSenario.getCreatures().length);
+        assertEquals(4, ambushSenario.getPositions().length);
     }
 }
