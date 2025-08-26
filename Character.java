@@ -23,6 +23,10 @@ public class Character extends Creature {
         this.options = options;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getInfo() {
          return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race; 
     }

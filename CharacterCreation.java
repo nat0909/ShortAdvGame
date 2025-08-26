@@ -101,6 +101,7 @@ public class CharacterCreation {
         ArrayList<String> options = new ArrayList<>();
 
         options.add("move");
+        options.add("end turn");
 
         System.out.println("Choose your class (Wizard, Cleric, Warlock, Eldritch Knight):");
         String playerClass = console.nextLine().trim().toLowerCase();
@@ -109,8 +110,8 @@ public class CharacterCreation {
             case "wizard":
                 // Advanced Attack Magic
                 options.add("fireball");
-                options.add("lighteningStrike");
-                options.add("thunderWave");
+                options.add("lightening strike");
+                options.add("thunder wave");
 
                 // Basic Defensive Magic
                 System.out.println("Choose one defensive spell (mana shield, illusion, invisibility):");
@@ -128,7 +129,7 @@ public class CharacterCreation {
                 options.add(console.nextLine().trim().toLowerCase());
 
                 // Advanced Healing Magic
-                options.add("quickPatch");
+                options.add("quick patch");
                 options.add("restore");
                 options.add("adrenaline");
 
@@ -137,29 +138,29 @@ public class CharacterCreation {
                 options.add(console.nextLine().trim().toLowerCase());
                 
                 // Gear: Mace
-                options.add("meleeAttack");
+                options.add("melee attack");
                 break;
 
             case "warlock":
                 // Advanced Attack Magic
                 options.add("fireball");
-                options.add("lighteningStrike");
-                options.add("thunderWave");
+                options.add("lightening strike");
+                options.add("thunder wave");
 
                 // Basic Healing Magic
                 System.out.println("Choose one healing spell (quick patch, restore, adrenaline):");
                 options.add(console.nextLine().trim().toLowerCase());
 
                 // Mind Control
-                options.add("mindControl");
+                options.add("mind control");
                 
                 // Gear: Staff
-                options.add("meleeAttack");
+                options.add("melee attack");
                 break;
 
             case "eldritch knight":
                 // Advanced Defensive Magic
-                options.add("manaShield");
+                options.add("mana shield");
                 options.add("illusion");
                 options.add("invisibility");
 
@@ -168,8 +169,8 @@ public class CharacterCreation {
                 options.add(console.nextLine().trim().toLowerCase());
                 
                 // Gear: Longsword and Shield
-                options.add("meleeAttack");
-                options.add("raiseShield");
+                options.add("melee attack");
+                options.add("raise shield");
                 break;
 
             default:

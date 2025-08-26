@@ -4,7 +4,6 @@
  * handling player turns with input interpretation, drawing the scenario to the console,
  * moving creatures, and accessing the current positions and creatures.
  */
-import java.util.Scanner;
 
 public class Senario {
     private Creature[] creatures; // Character included
@@ -29,30 +28,6 @@ public class Senario {
                 positions[i] = positions[0] + (5 + (i / 2) * 5); // Place monsters 5 spaces apart in front of the character
             }
         }
-    }
-
-    public void playerTurn(String[] options) {
-        Scanner console = new Scanner(System.in);
-        System.out.println("It's your turn!");
-        String input = console.nextLine().toLowerCase();
-        
-        String guess = StringUtil.interpretUserInput(options, input);
-        if(guess.equals("Invalid Input")) {
-            System.out.println("You're input was unclear. Please retype your class. ");
-        } else {
-            System.out.println("Did you mean " + guess + "? (y/n) ");
-            String response = console.nextLine().toLowerCase();
-            if(response.equals("y") || response.equals("yes")) {
-                // TODO: Proceed with the chosen option
-            } else {
-                System.out.println("Please pick a valid option: ");
-                for(String option : options)
-                    System.out.println(" " + option); 
-            }
-        }
-
-        console.close();
-
     }
 
     public void drawSenario() {
@@ -102,11 +77,19 @@ public class Senario {
     }
 
     public int[] getPositions() {
-        return positions;
+        int[] positionsCopy = new int[positions.length];
+        for (int i = 0; i < positions.length; i++) {
+            positionsCopy[i] = positions[i];
+        }
+        return positionsCopy;
     }
 
     public Creature[] getCreatures() {
-        return creatures;
+        Creature[] creaturesCopy = new Creature[creatures.length];
+        for (int i = 0; i < creatures.length; i++) {
+            creaturesCopy[i] = creatures[i];
+        }
+        return creaturesCopy;
     }
     
 }

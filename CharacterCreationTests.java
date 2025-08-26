@@ -180,11 +180,11 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
 
-        assertEquals(6, options.size());
+        assertEquals(7, options.size());
         assertTrue(options.contains("move"));
         assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("lighteningStrike"));
-        assertTrue(options.contains("thunderWave"));
+        assertTrue(options.contains("lightening strike"));
+        assertTrue(options.contains("thunder wave"));
         assertTrue(options.contains("illusion"));
         assertTrue(options.contains("relocate"));
     }
@@ -196,14 +196,14 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
 
-        assertEquals(7, options.size());
+        assertEquals(8, options.size());
         assertTrue(options.contains("move"));
         assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("quickPatch"));
+        assertTrue(options.contains("quick patch"));
         assertTrue(options.contains("restore"));
         assertTrue(options.contains("adrenaline"));
         assertTrue(options.contains("mana shield"));
-        assertTrue(options.contains("meleeAttack"));
+        assertTrue(options.contains("melee attack"));
     }
 
     @Test
@@ -213,14 +213,14 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
 
-        assertEquals(7, options.size());
+        assertEquals(8, options.size());
         assertTrue(options.contains("move"));
         assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("lighteningStrike"));
-        assertTrue(options.contains("thunderWave"));
+        assertTrue(options.contains("lightening strike"));
+        assertTrue(options.contains("thunder wave"));
         assertTrue(options.contains("restore"));
-        assertTrue(options.contains("mindControl"));
-        assertTrue(options.contains("meleeAttack"));
+        assertTrue(options.contains("mind control"));
+        assertTrue(options.contains("melee attack"));
     }
 
     @Test
@@ -230,14 +230,14 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
 
-        assertEquals(7, options.size());
+        assertEquals(8, options.size());
         assertTrue(options.contains("move"));
-        assertTrue(options.contains("manaShield"));
+        assertTrue(options.contains("mana shield"));
         assertTrue(options.contains("illusion"));
         assertTrue(options.contains("invisibility"));
         assertTrue(options.contains("quick patch"));
-        assertTrue(options.contains("meleeAttack"));
-        assertTrue(options.contains("raiseShield"));
+        assertTrue(options.contains("melee attack"));
+        assertTrue(options.contains("raise shield"));
     }
 
     @Test
@@ -247,7 +247,7 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner);
 
-        assertEquals(1, options.size());  // Only "Move" should be added
+        assertEquals(2, options.size());  // Only "move" and "end turn" should be added
         assertTrue(options.contains("move"));
     }
 
