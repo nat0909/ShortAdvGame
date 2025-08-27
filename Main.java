@@ -1,19 +1,25 @@
+import java.util.Scanner;
+
 public class Main {
     
     public static void main(String[] args) { 
         clearConsole();
-        Character character = CharacterCreation.create();
-        runSenario(character);
+        Scanner s = new Scanner(System.in);
+        Character character = CharacterCreation.create(s);
+        runSenario(character, s);
+
+        s.close();
     }
 
-    public static Character createCharacter() {
-        Character character = CharacterCreation.create();
+    public static Character createCharacter(Scanner s) {
+        Character character = CharacterCreation.create(s);
         System.out.println(character.getInfo());
         return character;
     }
 
-    public static void runSenario(Character character) {
-        // Senario senario = new Senario(new Creature[]{new Goblin(1), new Goblin(2)}, character, false);
+    public static void runSenario(Character character, Scanner s) {
+        Senario senario = new Senario(new Creature[]{new Goblin(1), new Goblin(2), new Goblin(2)}, character, false);
+        senario.runSenario(character, s);
     }
 
     public static void clearConsole() {

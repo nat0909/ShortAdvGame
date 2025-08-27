@@ -8,9 +8,10 @@ public class Goblin extends Creature {
         this.level = level;
     }
 
-    public void performTurn() {
+    public void performTurn(int[] positions, int goblinIndex) {
                
         // Move: close to target as possible
+        move(positions[goblinIndex], positions[0]);
 
         // If target is in range (adjacent to goblin):)
             // Action + Bonus Action: double dagger attack with dagger (range 1)

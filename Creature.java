@@ -4,7 +4,7 @@ public class Creature {
     private int maxHealth;
     private int health;
     private int speed;
-    private boolean hostile;  
+    private boolean hostile; 
 
     public Creature(int maxHealth, int speed, boolean hostile) {
         this.maxHealth = maxHealth;

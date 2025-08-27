@@ -1,10 +1,11 @@
+import java.util.Scanner;
+
 /**
  * Represents a scenario in a short adventure game, managing the positions and the character and monsters 
  * on a linear path. It provides functionality for initializing the scenario with ambush logic,
  * handling player turns with input interpretation, drawing the scenario to the console,
  * moving creatures, and accessing the current positions and creatures.
  */
-
 public class Senario {
     private Creature[] creatures; // Character included
     private int[] positions; // Positions of the creatures on a linear path
@@ -30,25 +31,56 @@ public class Senario {
         }
     }
 
-    public void drawSenario() {
-        System.out.println("Loading Senario...");        
-        System.out.println("\n\n");
+    public void runSenario(Character character, Scanner s) {
+        drawSenario();
+        
+        boolean senarioOver = false;
+        int curCreatureIndex = 0;
+        
+        while(!senarioOver) {
+            if(curCreatureIndex == 0) {
+                CharacterTurn.performTurn(this, character, s);
+            } else if(creatures[curCreatureIndex] instanceof Goblin) {
+                Goblin goblin = (Goblin) creatures[curCreatureIndex];
+                goblin.performTurn(positions, curCreatureIndex);
+            } else { // TODO: when adding new creature type, add them here as well
+                System.out.println("A creature in the list of creatures for this senario isn't in the runSenario method in the Senario class.");
+            }
+            drawSenario();
+        }
+    }
 
-        for(int square = 5; square <= 50; square+=5) {
-        // Search for creatures at this position
-            System.out.println("_ _ _ _ ");
+    public void drawSenario() {
+        System.out.println("Loading Senario...\n");        
+        int goblins = 0; // Used for naming goblins
+
+        for(int square = 1; square <= 50; square++) {
+            // Search for creatures at the position of the current square
             boolean creatureFound = false;
             for(int i = 0; i < positions.length; i++) {
                 if(positions[i] == square) {
-                    System.out.print(creatures[i] + " ");
+                    Creature creature = creatures[i];
+                    String name = "";
+                    if(creature instanceof Character) {
+                        name = ((Character) creature).getName();
+                    } else if(creature instanceof Goblin) {
+                        goblins++;
+                        name = "Goblin" + goblins;
+                    } else { // TODO: when adding new creature type, add them here as well
+                        name = "error see drawSenario method in the Senario class";
+                    }
+
+                    System.out.print(name + " ");
                     creatureFound = true;
                     break;
                 }
             }
             if(!creatureFound) {
-                System.out.println("_ ");
+                System.out.print("_ ");
             }
         }
+        System.out.println("\n");
+
     }
 
     public void moveCreature(int newPosition, Creature creature) {

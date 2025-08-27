@@ -1,35 +1,34 @@
 import java.util.Scanner;
 
-public class CharacterTurn {
+public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see the issue)
         
-    public void playerTurn(String[] options, Senario senario, Character character) { 
-        Scanner console = new Scanner(System.in);
-        System.out.println("It's your turn!");
-        boolean validOption = false;
+    public static void performTurn(Senario senario, Character character, Scanner console) { // TODO: get it to tell the speed of the char at some point either in the senario in character creation
+        System.out.print("It's your turn! ");
 
         boolean usedMovement = false;
         boolean usedAction = false;
         boolean usedBonusAction = false;
 
-        while(!validOption && !usedMovement && !usedAction && !usedBonusAction) { // TODO: add other options (other than move and end turn)
+        while(!usedMovement || !usedAction || !usedBonusAction) { // TODO: add other options (other than move and end turn)
             System.out.print("What would you like to do? ");
-            String input = console.nextLine().toLowerCase();
+            String input = console.nextLine().trim().toLowerCase();
+            String[] options = character.getOptions();
             String guess = StringUtil.interpretUserInput(options, input);
+
             if(guess.equals("Invalid Input")) {
                 System.out.println("You're input was unclear. Please retype your class. ");
             } else {
-                System.out.println("Did you mean " + guess + "? (y/n) ");
+                System.out.print("You'd like to " + guess + "? (y/n) "); // TODO: add this to string util since its also used in character creation
                 String response = console.nextLine().toLowerCase();
                 if(response.equals("y") || response.equals("yes")) {
-                    if(guess.equals("Move")) {
+                    if(guess.equals("move")) {
                         if(usedMovement) {
                             System.out.println("You've already used your movement this turn.");
                         } else {
-                            validOption = movement(senario, console, character);
+                            movement(senario, console, character);
                             usedMovement = true;
                         }
                     } else if(guess.equals("end turn")) {
-                        validOption = true;
                         usedMovement = true;
                         usedAction = true;
                         usedBonusAction = true;
@@ -44,17 +43,27 @@ public class CharacterTurn {
             }
         }
 
-        console.close();
+        System.out.println(character.getName() + "'s turn has ended.");
 
     }
 
-    public boolean movement(Senario senario, Scanner console, Character character) { //TODO: handle escape/end of the senario (character moves past 50 or before 0)
+    // Returns true if movement was successful, false if it wasn't
+    public static boolean movement(Senario senario, Scanner console, Character character) { //TODO: handle escape/end of the senario (character moves past 50 or before 0)
         int[] positions = senario.getPositions();
         int charPosition = positions[0];
         System.out.println("You are currently on square " + charPosition + ".");
         System.out.print("How far would you like to move? (Type the square number) ");
 
-        int square = console.nextInt(); // TODO: handle non-integer input
+        // Checks if the input is an integer and sends an error msg if it isn't
+        int square;
+        if (console.hasNextInt()) {
+            square = console.nextInt();
+            // continue with movement logic
+        } else {
+            System.out.println("Please enter a valid number.");
+            console.next(); // consume the invalid input
+            return false;
+        }
         int distance = square - charPosition;
         int charSpeed = character.getSpeed();
 

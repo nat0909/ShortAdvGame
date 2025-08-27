@@ -11,13 +11,11 @@ import java.util.Scanner;
  */
 public class CharacterCreation {
     
-    public static Character create() {
-        Scanner s = new Scanner(System.in);
+    public static Character create(Scanner s) {
         String charName = charName(s);
         String charClass = charClass(s);
         String charRace = charRace(s);
-        ArrayList<String> options = createPlayerOptions(s);
-        s.close();
+        ArrayList<String> options = createPlayerOptions(s, charClass);
 
         int health = calcHealth(charClass, charRace);
         int speed = calcSpeed(charRace);
@@ -52,7 +50,7 @@ public class CharacterCreation {
                 if(guess.equals("Invalid Input")) {
                     System.out.println("You're input was unclear. Please retype your class. ");
                 } else {
-                    System.out.println("Did you mean " + guess + "? (y/n) ");
+                    System.out.print("Did you mean " + guess + "? (y/n) ");
                     String response = console.nextLine().trim().toLowerCase();
                     if(response.equals("y") || response.equals("yes")) {
                         return guess.substring(0,1).toUpperCase() + guess.substring(1);
@@ -83,7 +81,7 @@ public class CharacterCreation {
                 if(guess.equals("Invalid Input")) {
                     System.out.println("You're input was unclear. Please retype your class. ");
                 } else {
-                    System.out.println("Did you mean " + guess + "? (y/n) ");
+                    System.out.print("Did you mean " + guess + "? (y/n) ");
                     String response = console.nextLine().trim().toLowerCase();
                     if(response.equals("y") || response.equals("yes")) {
                         return guess.substring(0,1).toUpperCase() + guess.substring(1);
@@ -96,26 +94,23 @@ public class CharacterCreation {
         return "error";
     }
 
-    public static ArrayList<String> createPlayerOptions(Scanner console) {
-        System.out.println("You will pick your spells based on your class.");
+    public static ArrayList<String> createPlayerOptions(Scanner console, String charClass) {
+        System.out.print("You will pick your spells based on your class. ");
         ArrayList<String> options = new ArrayList<>();
 
         options.add("move");
         options.add("end turn");
 
-        System.out.println("Choose your class (Wizard, Cleric, Warlock, Eldritch Knight):");
-        String playerClass = console.nextLine().trim().toLowerCase();
-
-        switch (playerClass) {
-            case "wizard":
+        switch (charClass) {
+            case "Wizard":
                 // Advanced Attack Magic
                 options.add("fireball");
                 options.add("lightening strike");
                 options.add("thunder wave");
 
                 // Basic Defensive Magic
-                System.out.println("Choose one defensive spell (mana shield, illusion, invisibility):");
-                options.add(console.nextLine().trim().toLowerCase());
+                System.out.print("Choose one defensive spell (mana shield, illusion, invisibility): ");
+                options.add(console.nextLine().trim().toLowerCase()); // TODO: handle invalid inputs for the spells
 
                 // Relocate Spell
                 options.add("relocate");
@@ -123,9 +118,9 @@ public class CharacterCreation {
                 // Gear: Wand (can't melee)
                 break;
 
-            case "cleric":
+            case "Cleric":
                 // Basic Attack Magic
-                System.out.println("Choose one attack spell (fireball, lightening strike, thunder wave):");
+                System.out.print("Choose one attack spell (fireball, lightening strike, thunder wave): ");
                 options.add(console.nextLine().trim().toLowerCase());
 
                 // Advanced Healing Magic
@@ -134,21 +129,21 @@ public class CharacterCreation {
                 options.add("adrenaline");
 
                 // Basic Defensive Magic
-                System.out.println("Choose one defensive spell (mana shield, illusion, invisibility):");
+                System.out.print("Choose one defensive spell (mana shield, illusion, invisibility): ");
                 options.add(console.nextLine().trim().toLowerCase());
                 
                 // Gear: Mace
                 options.add("melee attack");
                 break;
 
-            case "warlock":
+            case "Warlock":
                 // Advanced Attack Magic
                 options.add("fireball");
                 options.add("lightening strike");
                 options.add("thunder wave");
 
                 // Basic Healing Magic
-                System.out.println("Choose one healing spell (quick patch, restore, adrenaline):");
+                System.out.print("Choose one healing spell (quick patch, restore, adrenaline): ");
                 options.add(console.nextLine().trim().toLowerCase());
 
                 // Mind Control
@@ -158,14 +153,14 @@ public class CharacterCreation {
                 options.add("melee attack");
                 break;
 
-            case "eldritch knight":
+            case "Eldritch knight":
                 // Advanced Defensive Magic
                 options.add("mana shield");
                 options.add("illusion");
                 options.add("invisibility");
 
                 // Basic Healing Magic
-                System.out.println("Choose one healing spell (quick patch, restore, adrenaline):");
+                System.out.print("Choose one healing spell (quick patch, restore, adrenaline): ");
                 options.add(console.nextLine().trim().toLowerCase());
                 
                 // Gear: Longsword and Shield
@@ -174,7 +169,7 @@ public class CharacterCreation {
                 break;
 
             default:
-                System.out.println("Invalid class. No options assigned.");
+                System.out.println("Invalid input. View the createPlayerOptions method in the CharacterCreation class. ");
         }
 
         return options;

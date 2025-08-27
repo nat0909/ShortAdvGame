@@ -35,8 +35,12 @@ public class Character extends Creature {
         return level;
     }
 
-    public ArrayList<String> getOptions() {
-        return options;
+    public String[] getOptions() {
+        String[] optionArray = new String[options.size()];        
+        for(int i = 0; i < options.size(); i++) {
+            optionArray[i] = options.get(i);
+        }
+        return optionArray;
     }   
 
     public boolean setHealth(int changeInHealth, boolean tempHealth) {
