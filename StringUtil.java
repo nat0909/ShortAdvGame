@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class StringUtil {
     
     /**
@@ -41,4 +44,35 @@ public class StringUtil {
         }
 
     }
+
+    public static int findClosestNum(int cur, int target, int max, int[] taken) { // TODO: review and impliment tests
+        // Create a set for fast lookup of taken numbers
+        Set<Integer> takenSet = new HashSet<>();
+        for (int num : taken) {
+            takenSet.add(num);
+        }
+
+        int closest = cur; // Start with cur as the default
+        int minDiff = Math.abs(cur - target);
+
+        // Determine search direction
+        boolean searchUp = cur < target;
+
+        // Search only in one direction
+        for (int i = 1; i <= max; i++) {
+            int candidate = searchUp ? cur + i : cur - i;
+            if (takenSet.contains(candidate)) continue;
+
+            int diff = Math.abs(candidate - target);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = candidate;
+            }
+        }
+
+        return closest;
+
+        }
+
 }
+

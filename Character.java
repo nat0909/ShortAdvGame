@@ -10,6 +10,7 @@ public class Character extends Creature {
     private String race;
 
     private int level;
+    // TODO: implement experience and leveling up
     private ArrayList<String> options;
 
     public Character(String name, String charClass, String charRace, int health, int speed, ArrayList<String> options) {
@@ -28,10 +29,10 @@ public class Character extends Creature {
     }
 
     public String getInfo() {
-         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race; 
+         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level; 
     }
 
-    public int getLevel() {
+    public int getLevel() { // TODO: make speed in creature class bc enemies also have it
         return level;
     }
 

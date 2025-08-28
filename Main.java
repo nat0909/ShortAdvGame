@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) { 
         clearConsole();
         Scanner s = new Scanner(System.in);
-        Character character = CharacterCreation.create(s);
-        runSenario(character, s);
+        Character c = createCharacter(s);
+        runSenario(c, s);
 
         s.close();
     }

@@ -8,10 +8,10 @@ public class Goblin extends Creature {
         this.level = level;
     }
 
-    public void performTurn(int[] positions, int goblinIndex) {
+    public void performTurn(int[] positions, int index, Senario senario) {
                
         // Move: close to target as possible
-        move(positions[goblinIndex], positions[0]);
+        senario.moveCreature(move(positions, index), index);
 
         // If target is in range (adjacent to goblin):)
             // Action + Bonus Action: double dagger attack with dagger (range 1)
@@ -33,21 +33,10 @@ public class Goblin extends Creature {
         return level;
     }
 
-    public int move(int position, int charPosition) { // Distance from char
-        int distance = Math.abs(position - charPosition);        
-        int maxMove = super.getSpeed();
-        int move = 0;
+    public int move(int[] positions, int index) { // Distance from char
+        int position = positions[index];
+        int charPosition = positions[0];
 
-        if(distance <= maxMove + 1) { // Distance includes the sqaure the char is on
-            move = distance - 1; // Can't move onto the same square as the char
-        } else {
-            move = maxMove;
-        }
-
-        if(charPosition < position) { // Character is behind goblin
-            return position - move;
-        } else { // Character is in front of goblin
-            return position + move;
-        }
+        return StringUtil.findClosestNum(position, charPosition, super.getSpeed(), positions);
     }
 }

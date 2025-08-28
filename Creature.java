@@ -38,4 +38,5 @@ public class Creature {
 
         return true; // Indicates survival
     }
+
 }

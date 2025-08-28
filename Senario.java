@@ -21,17 +21,18 @@ public class Senario {
             positions[0] = 15; // Character starts at position 10
         }
         
-        for (int i = 1; i < monsters.length; i++) {
-            creatures[i] = monsters[i];
+        for (int i = 1; i < creatures.length; i++) {
+            creatures[i] = monsters[i - 1];
             if(ambush && i % 2 == 1) { // Place every other monster behind the character if it's an ambush
-                positions[i] = positions[0] - (5 + (i / 2) * 5); // Place monsters 5 spaces apart behind the character
+                positions[i] = positions[0] - (5 * i); // Place monsters 5 spaces apart behind the character
             } else {
-                positions[i] = positions[0] + (5 + (i / 2) * 5); // Place monsters 5 spaces apart in front of the character
+                positions[i] = positions[0] + (5 * i); // Place monsters 5 spaces apart in front of the character
             }
         }
     }
 
     public void runSenario(Character character, Scanner s) {
+        System.out.println("\nLoading Senario...\n");  
         drawSenario();
         
         boolean senarioOver = false;
@@ -39,21 +40,21 @@ public class Senario {
         
         while(!senarioOver) {
             if(curCreatureIndex == 0) {
-                CharacterTurn.performTurn(this, character, s);
+                senarioOver = CharacterTurn.performTurn(this, character, s);
             } else if(creatures[curCreatureIndex] instanceof Goblin) {
+                System.out.println("\nIt's Goblin" + curCreatureIndex + "'s turn!");
                 Goblin goblin = (Goblin) creatures[curCreatureIndex];
-                goblin.performTurn(positions, curCreatureIndex);
+                goblin.performTurn(positions, curCreatureIndex, this);
             } else { // TODO: when adding new creature type, add them here as well
                 System.out.println("A creature in the list of creatures for this senario isn't in the runSenario method in the Senario class.");
             }
+            curCreatureIndex = (curCreatureIndex + 1) % creatures.length;
             drawSenario();
         }
+        
     }
 
-    public void drawSenario() {
-        System.out.println("Loading Senario...\n");        
-        int goblins = 0; // Used for naming goblins
-
+    public void drawSenario() {    
         for(int square = 1; square <= 50; square++) {
             // Search for creatures at the position of the current square
             boolean creatureFound = false;
@@ -62,10 +63,9 @@ public class Senario {
                     Creature creature = creatures[i];
                     String name = "";
                     if(creature instanceof Character) {
-                        name = ((Character) creature).getName();
+                        name = ((Character) creature).getName().substring(0,2);
                     } else if(creature instanceof Goblin) {
-                        goblins++;
-                        name = "Goblin" + goblins;
+                        name = "G" + i;
                     } else { // TODO: when adding new creature type, add them here as well
                         name = "error see drawSenario method in the Senario class";
                     }
@@ -76,36 +76,20 @@ public class Senario {
                 }
             }
             if(!creatureFound) {
-                System.out.print("_ ");
+                System.out.print("__ ");
             }
         }
         System.out.println("\n");
 
     }
 
-    public void moveCreature(int newPosition, Creature creature) {
-        for(int i = 0; i < creatures.length; i++) {
-            if(creatures[i] == creature) {
-                positions[i] = newPosition;
-                break;
-            }
-        }
+    public void endSenario() {
+        // TODO: implement loot and exp gain
+        // TODO: implement escape vs all enemies defeated (to determine if they get loot) and forward vs backward (to determine where the character ends up, depending on if they went <0 or >50)
+    }
 
-        // if(creature instanceof Character){
-        //     boolean escape = false;
-        //     boolean wentForward = false;
-
-        //     if(newPosition > 50)
-        //         wentForward = true;
-
-        //     for (Creature c : creatures) {
-        //         if (c.getHostile()) {
-        //             escape = true;
-        //             break;
-        //         }
-        //     }
-        // }
-
+    public void moveCreature(int newPosition, int index) {
+        positions[index] = newPosition;
     }
 
     public int[] getPositions() {
