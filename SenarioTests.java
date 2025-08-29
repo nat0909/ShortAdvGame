@@ -11,9 +11,9 @@ public class SenarioTests {
     public void setUp() {
         Creature[] monsters = new Creature[3];
         Character character = new Character("", "", "", 30, 6, new ArrayList<>()); // TODO: fill params
-        monsters[0] = new Goblin(1);
-        monsters[1] = new Goblin(2);
-        monsters[2] = new Goblin(2);
+        monsters[0] = new Goblin(1, 1);
+        monsters[1] = new Goblin(2, 2);
+        monsters[2] = new Goblin(2, 3);
         
         normalSenario = new Senario(monsters, character, false);
         ambushSenario = new Senario(monsters, character, true);

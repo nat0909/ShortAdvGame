@@ -23,8 +23,12 @@ public class Senario {
         
         for (int i = 1; i < creatures.length; i++) {
             creatures[i] = monsters[i - 1];
-            if(ambush && i % 2 == 1) { // Place every other monster behind the character if it's an ambush
-                positions[i] = positions[0] - (5 * i); // Place monsters 5 spaces apart behind the character
+            if(ambush) { // Place every other monster behind the character if it's an ambush
+                if(i % 2 == 0) {    
+                    positions[i] = positions[0] - (i/2 * 5); // Place monsters 5 spaces apart behind the character
+                } else {
+                    positions[i] = positions[0] + ((i + 1)/2 * 5); // Place monsters 5 spaces apart in front of the character
+                }
             } else {
                 positions[i] = positions[0] + (5 * i); // Place monsters 5 spaces apart in front of the character
             }
@@ -42,8 +46,8 @@ public class Senario {
             if(curCreatureIndex == 0) {
                 senarioOver = CharacterTurn.performTurn(this, character, s);
             } else if(creatures[curCreatureIndex] instanceof Goblin) {
-                System.out.println("\nIt's Goblin" + curCreatureIndex + "'s turn!");
                 Goblin goblin = (Goblin) creatures[curCreatureIndex];
+                System.out.println("\nIt's Goblin" + goblin.getNum() + "'s turn!");
                 goblin.performTurn(positions, curCreatureIndex, this);
             } else { // TODO: when adding new creature type, add them here as well
                 System.out.println("A creature in the list of creatures for this senario isn't in the runSenario method in the Senario class.");
@@ -65,7 +69,7 @@ public class Senario {
                     if(creature instanceof Character) {
                         name = ((Character) creature).getName().substring(0,2);
                     } else if(creature instanceof Goblin) {
-                        name = "G" + i;
+                        name = "G" + ((Goblin) creature).getNum();
                     } else { // TODO: when adding new creature type, add them here as well
                         name = "error see drawSenario method in the Senario class";
                     }

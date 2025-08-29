@@ -18,7 +18,7 @@ public class Main {
     }
 
     public static void runSenario(Character character, Scanner s) {
-        Senario senario = new Senario(new Creature[]{new Goblin(1), new Goblin(2), new Goblin(2)}, character, false);
+        Senario senario = new Senario(new Creature[]{new Goblin(1, 1), new Goblin(2, 2), new Goblin(2, 3)}, character, true);
         senario.runSenario(character, s);
     }
 

@@ -17,6 +17,10 @@ public class Creature {
         return health;
     }
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
     public int getSpeed() {
         return speed;
     }

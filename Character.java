@@ -29,7 +29,7 @@ public class Character extends Creature {
     }
 
     public String getInfo() {
-         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level; 
+         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "/" + super.getMaxHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level; 
     }
 
     public int getLevel() { // TODO: make speed in creature class bc enemies also have it

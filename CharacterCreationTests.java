@@ -14,7 +14,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Aragorn\nClass: Warlock\nRace: Human";
+        String expected = "Name: Aragorn\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -25,7 +25,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Luna\nClass: Warlock\nRace: Elf";
+        String expected = "Name: Luna\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -36,7 +36,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Kira\nClass: Warlock\nRace: Elf";
+        String expected = "Name: Kira\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -47,7 +47,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: \nClass: Warlock\nRace: Human";
+        String expected = "Name: \nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -58,7 +58,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Lyra\nClass: Wizard\nRace: Human";
+        String expected = "Name: Lyra\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -69,7 +69,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Thorn\nClass: Warlock\nRace: Dwarf";
+        String expected = "Name: Thorn\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -80,7 +80,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Aeon\nClass: Wizard\nRace: Human";
+        String expected = "Name: Aeon\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -91,7 +91,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Nova\nClass: Wizard\nRace: Elf";
+        String expected = "Name: Nova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -102,7 +102,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Lady Arwen Evenstar\nClass: Wizard\nRace: Dwarf";
+        String expected = "Name: Lady Arwen Evenstar\nClass: Wizard\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -113,7 +113,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Sir-Galahad the Pure\nClass: Cleric\nRace: Elf";
+        String expected = "Name: Sir-Galahad the Pure\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -124,7 +124,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Nyx\nClass: Eldritch knight\nRace: Elf";
+        String expected = "Name: Nyx\nClass: Eldritch knight\nRace: Elf\nHealth: 26/26\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -135,7 +135,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Tova\nClass: Wizard\nRace: Elf";
+        String expected = "Name: Tova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -146,7 +146,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Fen\nClass: Eldritch knight\nRace: Human";
+        String expected = "Name: Fen\nClass: Eldritch knight\nRace: Human\nHealth: 28/28\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -157,7 +157,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Gideon\nClass: Warlock\nRace: Dwarf";
+        String expected = "Name: Gideon\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
@@ -168,7 +168,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Zana\nClass: Cleric\nRace: Elf";
+        String expected = "Name: Zana\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 

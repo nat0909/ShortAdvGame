@@ -2,10 +2,12 @@
 
 public class Goblin extends Creature {
     private int level;
+    private int num;
 
-    public Goblin(int level) {
+    public Goblin(int level, int num) {
         super(5 + level, 5, true); // Goblins have a max health of 5 + their level and speed of 5
         this.level = level;
+        this.num = num;
     }
 
     public void performTurn(int[] positions, int index, Senario senario) {
@@ -38,5 +40,9 @@ public class Goblin extends Creature {
         int charPosition = positions[0];
 
         return StringUtil.findClosestNum(position, charPosition, super.getSpeed(), positions);
+    }
+
+    public int getNum() {
+        return num;
     }
 }
