@@ -25,73 +25,65 @@ public class CharacterCreation {
     }
 
     private static String charName(Scanner console) {
-        System.out.print("What is your character's name? ");
-        String charName = console.nextLine();
-        return charName;
+        while(true) {
+            System.out.print("\nWhat is your character's name? ");
+            String userInput = console.nextLine().trim();
+            if (userInput.isEmpty()) {
+                System.out.println("Input cannot be blank. Please type at least on character.");
+            } else {
+                return userInput;
+            }
+        }
     }
 
     private static String charClass(Scanner console){
-        System.out.print("There are four classes you can choose from: wizard, cleric, warlock, or eldritch knight. ");
-        int classAccepted = 0;
+        String[] options = new String[]{"Wizard", "Cleric", "Warlock", "Eldritch knight"};
+
         /* Will loop until the player picks a valid class */
-        while(classAccepted == 0){
+        while(true) {
+            System.out.println("\nThere are four classes you can choose from: wizard, cleric, warlock, or eldritch knight.");
             System.out.print("What is your character's class? ");
-            String charClass = console.nextLine().trim().toLowerCase();
-            if(charClass.equals("wizard")){
-                return "Wizard";
-            } else if(charClass.equals("cleric")){
-                return "Cleric";
-            } else if(charClass.equals("warlock")){
-                return "Warlock";
-            }  else if(charClass.equals("eldritch knight")){
-                return "Eldritch knight";
+
+            String userInput = console.nextLine().trim();
+            if (userInput.isEmpty())
+                continue; // Restart loop bc it can't be empty
+            userInput = userInput.substring(0,1).toUpperCase() + userInput.substring(1).toLowerCase();
+            String charClass = StringUtil.findOption(options, userInput);
+
+            if(charClass.equals("Invalid Input")) {
+                String guess = StringUtil.interpretUserInput(options, userInput);
+                if(StringUtil.clarify(guess, console))
+                    return guess;
             } else {
-                String guess = StringUtil.interpretUserInput(new String[]{"wizard", "cleric", "warlock", "eldritch knight"}, charClass);
-                if(guess.equals("Invalid Input")) {
-                    System.out.println("You're input was unclear. Please retype your class. ");
-                } else {
-                    System.out.print("Did you mean " + guess + "? (y/n) ");
-                    String response = console.nextLine().trim().toLowerCase();
-                    if(response.equals("y") || response.equals("yes")) {
-                        return guess.substring(0,1).toUpperCase() + guess.substring(1);
-                    } else {
-                        System.out.println("Please pick one of the classes: wizard, cleric, warlock, or eldritch knight. ");
-                    }
-                }
+                return charClass;
             }
         }
-        return "error";
+
     }
 
     private static String charRace(Scanner console){
-        System.out.print("There are three races you can choose from: elf, human, or dwarf. ");
-        int classAccepted = 0;
+        String[] options = new String[]{"Elf", "Human", "Dwarf"};
+
         /* Will loop until the player picks a valid race */
-        while(classAccepted == 0){
+        while(true){
+            System.out.println("\nThere are three races you can choose from: elf, human, or dwarf.");
             System.out.print("What is your character's race? ");
-            String race = console.nextLine().trim().toLowerCase();
-            if(race.equals("elf")){
-                return "Elf";
-            } else if(race.equals("human")){
-                return "Human";
-            } else if(race.equals("dwarf")){
-                return "Dwarf";
+
+            String userInput = console.nextLine().trim();
+            if (userInput.isEmpty())
+                continue; // Restart loop bc it can't be empty
+            userInput = userInput.substring(0,1).toUpperCase() + userInput.substring(1).toLowerCase();
+            String charRace = StringUtil.findOption(options, userInput);
+
+            if(charRace.equals("Invalid Input")) {
+                String guess = StringUtil.interpretUserInput(options, userInput);
+                if(StringUtil.clarify(guess, console))
+                    return guess;
             } else {
-                String guess = StringUtil.interpretUserInput(new String[]{"elf", "human", "dwarf"}, race);
-                if(guess.equals("Invalid Input")) {
-                    System.out.println("You're input was unclear. Please retype your class. ");
-                } else {
-                    System.out.print("Did you mean " + guess + "? (y/n) ");
-                    String response = console.nextLine().trim().toLowerCase();
-                    if(response.equals("y") || response.equals("yes")) {
-                        return guess.substring(0,1).toUpperCase() + guess.substring(1);
-                    } else {
-                        System.out.println("Please pick one of the races: elf, human, or dwarf. ");
-                    }
-                }
+                return charRace;
             }
         }        
-        return "error";
+
     }
 
     public static ArrayList<String> createPlayerOptions(Scanner console, String charClass) {

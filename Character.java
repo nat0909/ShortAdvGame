@@ -9,12 +9,11 @@ public class Character extends Creature {
     private String charClass;
     private String race;
 
-    private int level;
-    // TODO: implement experience and leveling up
     private ArrayList<String> options;
+    private int level;  // TODO: implement experience and leveling up
 
     public Character(String name, String charClass, String charRace, int health, int speed, ArrayList<String> options) {
-        super(health, speed, false);
+        super(health, speed, false, 1);
         
         this.name = name;
         this.charClass = charClass;
@@ -30,10 +29,6 @@ public class Character extends Creature {
 
     public String getInfo() {
          return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "/" + super.getMaxHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level; 
-    }
-
-    public int getLevel() { // TODO: make speed in creature class bc enemies also have it
-        return level;
     }
 
     public String[] getOptions() {

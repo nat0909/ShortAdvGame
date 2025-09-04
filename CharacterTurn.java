@@ -2,48 +2,44 @@ import java.util.Scanner;
 
 public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see the issue)
         
-    public static boolean performTurn(Senario senario, Character character, Scanner console) { // TODO: get it to tell the speed of the char at some point either in the senario in character creation
-        System.out.print("It's your turn! ");
+    public static boolean performTurn(Senario senario, Character character, Scanner console) { 
+        System.out.print("\nIt's your turn! ");
 
         boolean usedMovement = false;
         boolean usedAction = false;
         boolean usedBonusAction = false;
 
-        while(!usedMovement || !usedAction || !usedBonusAction) { // TODO: add other options (other than move and end turn)
+        while(!usedMovement || !usedAction || !usedBonusAction) {
             System.out.print("What would you like to do? ");
             String input = console.nextLine().trim().toLowerCase();
             String[] options = character.getOptions();
-            String guess = StringUtil.interpretUserInput(options, input);
 
-            if(guess.equals("Invalid Input")) {
-                System.out.println("You're input was unclear. Please retype your choice. ");
-            } else {
-                System.out.print("You'd like to " + guess + "? (y/n) "); // TODO: add this to string util since its also used in character creation
-                String response = console.nextLine().toLowerCase();
-                if(response.equals("y") || response.equals("yes")) {
-                    if(guess.equals("move")) {
-                        if(usedMovement) {
-                            System.out.println("You've already used your movement this turn.");
-                        } else {
-                            String moveResult = move(senario, console, character);
-                            if(moveResult.equals("End of Senario")) {
-                                return true; // End the senario
-                            } else if (moveResult.equals("Complete")) {
-                                usedMovement = true;
-                            }
-                        }
-                    } else if(guess.equals("end turn")) {
-                        usedMovement = true;
-                        usedAction = true;
-                        usedBonusAction = true;
+            // Ensures it is a valid option
+            String choice = StringUtil.findOption(options, input);
+            if(choice.equals("Invalid Input")) {
+                choice = StringUtil.interpretUserInput(options, input);
+                if(!StringUtil.clarify(choice, console)) 
+                    continue; // Restarts the loop so the character can pick again if they say no
+            }
+
+            switch (choice) {
+                case "move":
+                    if(usedMovement) {
+                        System.out.println("You've already used your movement this turn.");
                     } else {
-                        System.out.println("You can't use that option again this turn.");
+                        String moveResult = move(senario, console, character);
+                        if(moveResult.equals("End of Senario")) {
+                            return true; // End the senario
+                        } else if (moveResult.equals("Complete")) {
+                            usedMovement = true;
+                        }
                     }
-                } else {
-                    System.out.println("Please pick one of the following options: ");
-                    for(String option : options)
-                        System.out.println(" " + option); 
-                }
+                case "end turn":
+                    usedMovement = true;
+                    usedAction = true;
+                    usedBonusAction = true;
+            default:
+                System.out.println("Please pick one of the options.");
             }
 
         }
@@ -57,46 +53,63 @@ public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see th
     public static String move(Senario senario, Scanner console, Character character) { //TODO: handle escape/end of the senario (character moves past 50 or before 0)
         int[] positions = senario.getPositions();
         int charPosition = positions[0];
-        System.out.println("You are currently on square " + charPosition + ".");
-        System.out.print("How far would you like to move? (Type the square number) ");
 
-        // Checks if the input is an integer and sends an error msg if it isn't
-        int square;
-        if (console.hasNextInt()) {
-            square = console.nextInt();
-            console.nextLine(); // Consume the newline character left by nextInt()
-            // continue with movement logic
-        } else {
-            System.out.println("Please enter a valid number.");
-            console.next(); // consume the invalid input
-            return "error";
-        }
-        int distance = Math.abs(square - charPosition);
-        int charSpeed = character.getSpeed();
+        // Loops until the player picks a number to move to or decides not to move
+        while(true) {
+            System.out.println("\nYou are currently on square " + charPosition + ", and you have a movement speed of " + character.getSpeed() + ".");
+            System.out.print("How far would you like to move? (+/- a num, x to pick a different option) "); // TODO: change move system to +/- a num instead of typing a sqaure
 
-        // Checks if the move is valid and sends the cooresponding error msg if it isn't
-        if(distance > charSpeed) {
-            System.out.println("You can only move up to " + charSpeed + " spaces.");
-            return "error";
-        } else {
-            for(int position = 1; position < positions.length; position++) {
-                if(positions[position] == square) {
-                    System.out.println("You can't move onto the same square as another creature.");
-                    return "error";
+            // Checks if the input is empty, has a length less than 2 length, does not have + or - first, or is not num after that
+            // If this is the case, it sends an error message and restarts the loop
+            String userInput = console.nextLine().trim();
+            if (userInput.isEmpty() || userInput.length() < 2 ||
+            !(userInput.substring(0, 1).equals("+") || userInput.substring(0, 1).equals("-")) ||
+            !StringUtil.isInteger(userInput.substring(1))) {
+                System.out.println("Please pick one of the options.");
+                continue;
+            }
+            
+            // Checks if the user is asking to repick
+            if (userInput.equals("x") || userInput.equals("X"))
+                return "Repick";
+
+            String direction = userInput.substring(0,1);
+            int square = Integer.parseInt(userInput.substring(1));
+            int charSpeed = character.getSpeed();
+            int distance;
+
+            if(direction.equals("+")) {
+                distance = charPosition + square;
+            } else if (direction.equals("-")) {
+                distance = charPosition - square;
+            } else {
+                System.out.println("Error: Wasn't + or - and wasn't caught earlier\nLocation: move in CharacterTurn");
+                return "error";
+            }
+
+            // Checks if the move is valid and sends the cooresponding error msg if it isn't
+            if(distance > charSpeed) {
+                System.out.println("You can only move up to " + charSpeed + " spaces.");
+            } else {
+                for(int position = 1; position < positions.length; position++) {
+                    if(positions[position] == square) {
+                        System.out.println("You can't move onto the same square as another creature.");
+                        break;
+                    } else if (position == positions.length - 1) {
+                        // Move the character, output the new square, and redraw the senario
+                        senario.moveCreature(square, 0);
+                        System.out.println(character.getName() + " moved to square " + square + ".");
+                        senario.drawSenario();
+
+                        if(square < 0 || square > 50) { // Character moved out of bounds
+                            return "End of Senario"; // Character is out of bounds, end the senario
+                        }
+                        return "Complete";
+                    }
                 }
             }
+
         }
-
-        // Move the character, output the new square, and redraw the senario
-        senario.moveCreature(square, 0);
-        System.out.println(character.getName() + " moved to square " + square + ".");
-        senario.drawSenario();
-
-        if(square < 0 || square > 50) { // Character moved out of bounds
-            return "End of Senario"; // Character is out of bounds, end the senario
-        }
-        return "Complete";
-
     }   
 
 }

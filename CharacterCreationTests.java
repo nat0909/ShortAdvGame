@@ -42,18 +42,18 @@ public class CharacterCreationTests {
 
     @Test
     public void testBlankName() {
-        String input = "\nwarlock\nhuman\ny\nquick patch\n";
+        String input = "\nLin\nwarlock\nhuman\ny\nquick patch\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: \nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Lin\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
 
     @Test
     public void testInvalidClassThenValid() {
-        String input = "Lyra\nnecromancer\nwizard\ny\nhuman\ny\nillusion\n"; // Invalid class first
+        String input = "Lyra\nnecromancer\nwizard\ny\nhuman\ny\nillusion\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(inputStream);
 
@@ -64,7 +64,7 @@ public class CharacterCreationTests {
 
     @Test
     public void testInvalidRaceThenValid() {
-        String input = "Thorn\nwarlock\norc\ndwarf\ny\nquick patch\n"; // Invalid race first
+        String input = "Thorn\nwarlock\norc\ndwarf\ny\nquick patch\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         Scanner scanner = new Scanner(inputStream);
 
@@ -160,6 +160,8 @@ public class CharacterCreationTests {
         String expected = "Name: Gideon\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
         assertEquals(expected, c.getInfo());
     }
+
+
 
     @Test
     public void testRaceWithSpecialCharAndCorrection() {
@@ -266,8 +268,97 @@ public class CharacterCreationTests {
 
         ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Bard");
 
-        assertEquals(2, options.size());  // Only "move" and "end turn" should be added
+        assertEquals(2, options.size());
         assertTrue(options.contains("move"));
+        assertTrue(options.contains("end turn"));
+    }
+
+    @Test
+    public void testClassWithLeadingAndTrailingSpaces() {
+        String input = "Zara\n   wizard   \ny\nhuman\ny\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Zara\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testRaceWithLeadingAndTrailingSpaces() {
+        String input = "Kai\nwizard\ny\n   elf   \ny\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Kai\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testClassWithOnlySpaces() {
+        String input = "Nova\n   \ncleric\ny\nhuman\ny\nfireball\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Nova\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testRaceWithOnlySpaces() {
+        String input = "Echo\nwarlock\ny\n   \ndwarf\ny\nquick patch\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Echo\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testClassWithTabsAndNewlines() {
+        String input = "Sage\n\t\nwizard\ny\nhuman\ny\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Sage\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testRaceWithTabsAndNewlines() {
+        String input = "River\ncleric\ny\n\t\nhuman\ny\nfireball\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: River\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testMultipleEmptyInputsBeforeValidClass() {
+        String input = "Atlas\n\n\n   \n\t\nwarlock\ny\nhuman\ny\nquick patch\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Atlas\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        assertEquals(expected, c.getInfo());
+    }
+
+    @Test
+    public void testMultipleEmptyInputsBeforeValidRace() {
+        String input = "Iris\nwizard\ny\n\n\n   \n\t\nelf\ny\nillusion\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        Scanner scanner = new Scanner(inputStream);
+
+        Character c = CharacterCreation.create(scanner);
+        String expected = "Name: Iris\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        assertEquals(expected, c.getInfo());
     }
 
 }
