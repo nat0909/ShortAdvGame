@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see the issue)
+public class CharacterTurn {
         
     public static boolean performTurn(Senario senario, Character character, Scanner console) { 
         System.out.print("\nIt's your turn! ");
@@ -11,7 +11,7 @@ public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see th
 
         while(!usedMovement || !usedAction || !usedBonusAction) {
             System.out.print("What would you like to do? ");
-            String input = console.nextLine().trim().toLowerCase();
+            String input = console.nextLine().trim().toLowerCase(); // TODO: lowercase?
             String[] options = character.getOptions();
 
             // Ensures it is a valid option
@@ -23,7 +23,7 @@ public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see th
             }
 
             switch (choice) {
-                case "move":
+                case "Move":
                     if(usedMovement) {
                         System.out.println("You've already used your movement this turn.");
                     } else {
@@ -34,7 +34,21 @@ public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see th
                             usedMovement = true;
                         }
                     }
-                case "end turn":
+                case "Melee attack":
+                    if(usedAction) {
+                        System.out.println("You've already used your action this turn.");
+                    } else {
+                        String charClass = character.getCharClass();
+                        int[] positions = senario.getPositions();
+                        if(charClass.equals("Warlock")) {
+                            //int damage = Actions.warlockMeleeAttack(character.getLevel());
+                        } else if (charClass.equals("Cleric")) {
+                            //int damage = Actions.clericMeleeAttack(character.getLevel());
+                        } else if (charClass.equals("Eldritch Knight")) {
+                            //int damage = Actions.eldritchKnightMeleeAttack(character.getLevel());
+                        }
+                    }
+                case "End turn":
                     usedMovement = true;
                     usedAction = true;
                     usedBonusAction = true;
@@ -74,21 +88,21 @@ public class CharacterTurn { // TODO: FIX THIS CLASS (run it and you will see th
                 return "Repick";
 
             String direction = userInput.substring(0,1);
-            int square = Integer.parseInt(userInput.substring(1));
+            int squares = Integer.parseInt(userInput.substring(1));
             int charSpeed = character.getSpeed();
-            int distance;
+            int square;
 
             if(direction.equals("+")) {
-                distance = charPosition + square;
+                square = charPosition + squares;
             } else if (direction.equals("-")) {
-                distance = charPosition - square;
+                square = charPosition - squares;
             } else {
                 System.out.println("Error: Wasn't + or - and wasn't caught earlier\nLocation: move in CharacterTurn");
                 return "error";
             }
 
             // Checks if the move is valid and sends the cooresponding error msg if it isn't
-            if(distance > charSpeed) {
+            if(squares > charSpeed) {
                 System.out.println("You can only move up to " + charSpeed + " spaces.");
             } else {
                 for(int position = 1; position < positions.length; position++) {

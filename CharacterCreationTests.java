@@ -14,7 +14,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Aragorn\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Aragorn\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -25,7 +25,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Luna\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Luna\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -36,7 +36,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Kira\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Kira\nClass: Warlock\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -47,7 +47,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Lin\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Lin\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -58,7 +58,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Lyra\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Lyra\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -69,7 +69,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Thorn\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
+        String expected = "Name: Thorn\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -80,7 +80,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Aeon\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Aeon\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -91,7 +91,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Nova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Nova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -102,7 +102,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Lady Arwen Evenstar\nClass: Wizard\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
+        String expected = "Name: Lady Arwen Evenstar\nClass: Wizard\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -113,7 +113,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Sir-Galahad the Pure\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Sir-Galahad the Pure\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Quick patch, Restore, Adrenaline, Illusion, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -124,7 +124,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Nyx\nClass: Eldritch knight\nRace: Elf\nHealth: 26/26\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Nyx\nClass: Eldritch knight\nRace: Elf\nHealth: 26/26\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Mana shield, Illusion, Invisibility, Quick patch, Melee attack, Raise shield]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -135,7 +135,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Tova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Tova\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -146,7 +146,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Fen\nClass: Eldritch knight\nRace: Human\nHealth: 28/28\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Fen\nClass: Eldritch knight\nRace: Human\nHealth: 28/28\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Mana shield, Illusion, Invisibility, Quick patch, Melee attack, Raise shield]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -157,7 +157,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Gideon\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
+        String expected = "Name: Gideon\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -170,7 +170,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Zana\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Zana\nClass: Cleric\nRace: Elf\nHealth: 24/24\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Quick patch, Restore, Adrenaline, Illusion, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -191,86 +191,201 @@ public class CharacterCreationTests {
     }
 
     @Test
-    public void testWizardOptions() {
-        String input = "illusion\n";
+    public void testWizardOptions() throws Exception {
+        String input = "Illusion\n";
         Scanner scanner = new Scanner(input);
 
-        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Wizard");
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
 
         assertEquals(7, options.size());
-        assertTrue(options.contains("move"));
-        assertTrue(options.contains("end turn"));
-        assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("lightening strike"));
-        assertTrue(options.contains("thunder wave"));
-        assertTrue(options.contains("illusion"));
-        assertTrue(options.contains("relocate"));
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Illusion"));
+        assertTrue(options.contains("Relocate"));
     }
-    
+
     @Test
-    public void testClericOptions() {
+    public void testWizardOptionsWithManaShield() throws Exception {
+        String input = "Mana shield\n";
+        Scanner scanner = new Scanner(input);
+
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
+
+        assertEquals(7, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Mana shield"));
+        assertTrue(options.contains("Relocate"));
+    }
+
+    @Test
+    public void testWizardOptionsWithInvisibility() throws Exception {
+        String input = "Invisibility\n";
+        Scanner scanner = new Scanner(input);
+
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
+
+        assertEquals(7, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Invisibility"));
+        assertTrue(options.contains("Relocate"));
+    }
+
+    @Test
+    public void testWizardOptionsWithInvalidThenValidDefensiveSpell() throws Exception {
         String input = "fireball\nillusion\n";
         Scanner scanner = new Scanner(input);
 
-        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Cleric");
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
 
-        assertEquals(8, options.size());
-        assertTrue(options.contains("move"));
-        assertTrue(options.contains("end turn"));
-        assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("quick patch"));
-        assertTrue(options.contains("restore"));
-        assertTrue(options.contains("adrenaline"));
-        assertTrue(options.contains("illusion"));
-        assertTrue(options.contains("melee attack"));
+        assertEquals(7, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Illusion"));
+        assertTrue(options.contains("Relocate"));
     }
 
     @Test
-    public void testWarlockOptions() {
-        String input = "quick patch\n";
+    public void testWizardOptionsWithEmptyThenValidDefensiveSpell() throws Exception {
+        String input = "\nmana shield\n";
         Scanner scanner = new Scanner(input);
 
-        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Warlock");
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
 
-        assertEquals(8, options.size());
-        assertTrue(options.contains("move"));
-        assertTrue(options.contains("end turn"));
-        assertTrue(options.contains("fireball"));
-        assertTrue(options.contains("lightening strike"));
-        assertTrue(options.contains("thunder wave"));
-        assertTrue(options.contains("quick patch"));
-        assertTrue(options.contains("mind control"));
-        assertTrue(options.contains("melee attack"));
+        assertEquals(7, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Mana shield"));
+        assertTrue(options.contains("Relocate"));
     }
 
     @Test
-    public void testEldritchKnightOptions() {
-        String input = "quick patch\n";
+    public void testWizardOptionsWithMixedCaseDefensiveSpell() throws Exception {
+        String input = "InViSiBiLiTy\n";
         Scanner scanner = new Scanner(input);
 
-        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Eldritch knight");
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Wizard");
 
-        assertEquals(8, options.size());
-        assertTrue(options.contains("move"));
-        assertTrue(options.contains("end turn"));
-        assertTrue(options.contains("mana shield"));
-        assertTrue(options.contains("illusion"));
-        assertTrue(options.contains("invisibility"));
-        assertTrue(options.contains("quick patch"));
-        assertTrue(options.contains("melee attack"));
-        assertTrue(options.contains("raise shield"));
+        assertEquals(7, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Invisibility"));
+        assertTrue(options.contains("Relocate"));
     }
 
     @Test
-    public void testInvalidClass() {
+    public void testClericOptions() throws Exception {
+        String input = "Fireball\nIllusion\n";
+        Scanner scanner = new Scanner(input);
+
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Cleric");
+
+        assertEquals(8, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Quick patch"));
+        assertTrue(options.contains("Restore"));
+        assertTrue(options.contains("Adrenaline"));
+        assertTrue(options.contains("Illusion"));
+        assertTrue(options.contains("Melee attack"));
+    }
+
+    @Test
+    public void testWarlockOptions() throws Exception {
+        String input = "Quick patch\n";
+        Scanner scanner = new Scanner(input);
+
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Warlock");
+
+        assertEquals(8, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Fireball"));
+        assertTrue(options.contains("Lightening strike"));
+        assertTrue(options.contains("Thunder wave"));
+        assertTrue(options.contains("Quick patch"));
+        assertTrue(options.contains("Mind control"));
+        assertTrue(options.contains("Melee attack"));
+    }
+
+    @Test
+    public void testEldritchKnightOptions() throws Exception {
+        String input = "Quick patch\n";
+        Scanner scanner = new Scanner(input);
+
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Eldritch knight");
+
+        assertEquals(8, options.size());
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
+        assertTrue(options.contains("Mana shield"));
+        assertTrue(options.contains("Illusion"));
+        assertTrue(options.contains("Invisibility"));
+        assertTrue(options.contains("Quick patch"));
+        assertTrue(options.contains("Melee attack"));
+        assertTrue(options.contains("Raise shield"));
+    }
+
+    @Test
+    public void testInvalidClass() throws Exception {
         String input = "Bard\n";
         Scanner scanner = new Scanner(input);
 
-        ArrayList<String> options = CharacterCreation.createPlayerOptions(scanner, "Bard");
+        Method method = CharacterCreation.class.getDeclaredMethod("createPlayerOptions", Scanner.class, String.class);
+        method.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        ArrayList<String> options = (ArrayList<String>) method.invoke(null, scanner, "Bard");
 
         assertEquals(2, options.size());
-        assertTrue(options.contains("move"));
-        assertTrue(options.contains("end turn"));
+        assertTrue(options.contains("Move"));
+        assertTrue(options.contains("End turn"));
     }
 
     @Test
@@ -280,7 +395,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Zara\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Zara\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -291,7 +406,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Kai\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Kai\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -302,7 +417,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Nova\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Nova\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Quick patch, Restore, Adrenaline, Illusion, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -313,7 +428,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Echo\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1";
+        String expected = "Name: Echo\nClass: Warlock\nRace: Dwarf\nHealth: 26/26\nSpeed: 4\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -324,7 +439,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Sage\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Sage\nClass: Wizard\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -335,7 +450,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: River\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1";
+        String expected = "Name: River\nClass: Cleric\nRace: Human\nHealth: 26/26\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Quick patch, Restore, Adrenaline, Illusion, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -346,7 +461,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Atlas\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1";
+        String expected = "Name: Atlas\nClass: Warlock\nRace: Human\nHealth: 22/22\nSpeed: 6\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Quick patch, Mind control, Melee attack]";
         assertEquals(expected, c.getInfo());
     }
 
@@ -357,7 +472,7 @@ public class CharacterCreationTests {
         Scanner scanner = new Scanner(inputStream);
 
         Character c = CharacterCreation.create(scanner);
-        String expected = "Name: Iris\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1";
+        String expected = "Name: Iris\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: [Move, End turn, Fireball, Lightening strike, Thunder wave, Illusion, Relocate]";
         assertEquals(expected, c.getInfo());
     }
 

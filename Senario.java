@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class Senario {
     private Creature[] creatures; // Character included
+    private String[] names; // Abbreviations of the creatures, character included
     private int[] positions; // Positions of the creatures on a linear path
 
     public Senario(Creature[] monsters, Character character, boolean ambush) {
@@ -33,6 +34,19 @@ public class Senario {
                 positions[i] = positions[0] + (5 * i); // Place monsters 5 spaces apart in front of the character
             }
         }
+
+        names = new String[creatures.length];
+        for(int i = 0; i < creatures.length; i++) { 
+            if(creatures[i] instanceof Character) {
+                names[i] = ((Character) creatures[i]).getName().substring(0,2);
+            } else if(creatures[i] instanceof Goblin) {
+                names[i] = "G" + ((Goblin) creatures[i]).getNum();
+            } else { // TODO: when adding new creature type, add them here as well
+                names[i] = "error see Senario constructor";
+            }
+        }
+
+
     }
 
     public void runSenario(Character character, Scanner s) {
@@ -96,20 +110,28 @@ public class Senario {
         positions[index] = newPosition;
     }
 
-    public int[] getPositions() {
-        int[] positionsCopy = new int[positions.length];
-        for (int i = 0; i < positions.length; i++) {
-            positionsCopy[i] = positions[i];
-        }
-        return positionsCopy;
-    }
-
     public Creature[] getCreatures() {
         Creature[] creaturesCopy = new Creature[creatures.length];
         for (int i = 0; i < creatures.length; i++) {
             creaturesCopy[i] = creatures[i];
         }
         return creaturesCopy;
+    }
+
+    public String[] getNames() {
+        String[] namesCopy = new String[names.length];
+        for (int i = 0; i < names.length; i++) {
+            namesCopy[i] = names[i];
+        }
+        return namesCopy;
+    }
+
+    public int[] getPositions() {
+        int[] positionsCopy = new int[positions.length];
+        for (int i = 0; i < positions.length; i++) {
+            positionsCopy[i] = positions[i];
+        }
+        return positionsCopy;
     }
     
 }

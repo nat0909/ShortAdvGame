@@ -12,19 +12,19 @@ Cleric:
 - Basic Attack Magic
 - Basic Defense Magic
 - Advanced Healing Magic
-- Uses a Mace
+- Uses a Mace (Decent amount of damage, range 1)
 - Little Extra Health
 
 Warlock:
 - Advanced Attack Magic
 - Basic Healing Magic
 - Mind Control Spell
-- Uses a Staff
+- Uses a Staff (Has a range of two but can only hit one enemy; doesn't do much damage, but it trips foes, reducing their movement next turn)
 
 Eldritch Knight:
 - Advanced Defensive Magic
 - Basic Healing Magic
-- Uses a Sword and Shield
+- Uses a Sword and Shield (Good amount of damage, range 1)
 - Extra Health
 
 * Advanced = all spells

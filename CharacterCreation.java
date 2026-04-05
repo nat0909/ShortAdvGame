@@ -44,19 +44,9 @@ public class CharacterCreation {
             System.out.println("\nThere are four classes you can choose from: wizard, cleric, warlock, or eldritch knight.");
             System.out.print("What is your character's class? ");
 
-            String userInput = console.nextLine().trim();
-            if (userInput.isEmpty())
-                continue; // Restart loop bc it can't be empty
-            userInput = userInput.substring(0,1).toUpperCase() + userInput.substring(1).toLowerCase();
-            String charClass = StringUtil.findOption(options, userInput);
-
-            if(charClass.equals("Invalid Input")) {
-                String guess = StringUtil.interpretUserInput(options, userInput);
-                if(StringUtil.clarify(guess, console))
-                    return guess;
-            } else {
-                return charClass;
-            }
+           String chClass = makeUserPick(console, options);
+            if (!chClass.equals("continue"))
+                return chClass;
         }
 
     }
@@ -69,95 +59,120 @@ public class CharacterCreation {
             System.out.println("\nThere are three races you can choose from: elf, human, or dwarf.");
             System.out.print("What is your character's race? ");
 
-            String userInput = console.nextLine().trim();
-            if (userInput.isEmpty())
-                continue; // Restart loop bc it can't be empty
-            userInput = userInput.substring(0,1).toUpperCase() + userInput.substring(1).toLowerCase();
-            String charRace = StringUtil.findOption(options, userInput);
-
-            if(charRace.equals("Invalid Input")) {
-                String guess = StringUtil.interpretUserInput(options, userInput);
-                if(StringUtil.clarify(guess, console))
-                    return guess;
-            } else {
-                return charRace;
-            }
+            String race = makeUserPick(console, options);
+            if (!race.equals("continue"))
+                return race;
         }        
 
     }
 
-    public static ArrayList<String> createPlayerOptions(Scanner console, String charClass) {
+    private static ArrayList<String> createPlayerOptions(Scanner console, String charClass) {
         System.out.print("You will pick your spells based on your class. ");
         ArrayList<String> options = new ArrayList<>();
 
-        options.add("move");
-        options.add("end turn");
+        options.add("Move");
+        options.add("End turn");
 
         switch (charClass) {
             case "Wizard":
                 // Advanced Attack Magic
-                options.add("fireball");
-                options.add("lightening strike");
-                options.add("thunder wave");
+                options.add("Fireball");
+                options.add("Lightening strike");
+                options.add("Thunder wave");
 
                 // Basic Defensive Magic
-                System.out.print("Choose one defensive spell (mana shield, illusion, invisibility): ");
-                options.add(console.nextLine().trim().toLowerCase()); // TODO: handle invalid inputs for the spells
+                while(true) {
+                    System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
+
+                    String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
+                    if (!spell.equals("continue")) {
+                        options.add(spell);
+                        break;
+                    }
+                }
 
                 // Relocate Spell
-                options.add("relocate");
-                
+                options.add("Relocate");
+
                 // Gear: Wand (can't melee)
                 break;
 
             case "Cleric":
                 // Basic Attack Magic
-                System.out.print("Choose one attack spell (fireball, lightening strike, thunder wave): ");
-                options.add(console.nextLine().trim().toLowerCase());
+                while(true) {
+                    System.out.print("Choose one attack spell (Fireball, Lightening strike, Thunder wave): ");
+
+                    String spell = makeUserPick(console, new String[]{"Fireball", "Lightening strike", "Thunder wave"});
+                    if (!spell.equals("continue")) {
+                        options.add(spell);
+                        break;
+                    }
+                }
 
                 // Advanced Healing Magic
-                options.add("quick patch");
-                options.add("restore");
-                options.add("adrenaline");
+                options.add("Quick patch");
+                options.add("Restore");
+                options.add("Adrenaline");
 
                 // Basic Defensive Magic
-                System.out.print("Choose one defensive spell (mana shield, illusion, invisibility): ");
-                options.add(console.nextLine().trim().toLowerCase());
+                while(true) {
+                    System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
+                    
+                    String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
+                    if (!spell.equals("continue")) {
+                        options.add(spell);
+                        break;
+                    }
+                }
                 
                 // Gear: Mace
-                options.add("melee attack");
+                options.add("Melee attack");
                 break;
 
             case "Warlock":
                 // Advanced Attack Magic
-                options.add("fireball");
-                options.add("lightening strike");
-                options.add("thunder wave");
+                options.add("Fireball");
+                options.add("Lightening strike");
+                options.add("Thunder wave");
 
                 // Basic Healing Magic
-                System.out.print("Choose one healing spell (quick patch, restore, adrenaline): ");
-                options.add(console.nextLine().trim().toLowerCase());
+                while(true) {
+                    System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
+
+                    String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
+                    if (!spell.equals("continue")) {
+                        options.add(spell);
+                        break;
+                    }
+                }
 
                 // Mind Control
-                options.add("mind control");
-                
+                options.add("Mind control");
+
                 // Gear: Staff
-                options.add("melee attack");
+                options.add("Melee attack");
                 break;
 
             case "Eldritch knight":
                 // Advanced Defensive Magic
-                options.add("mana shield");
-                options.add("illusion");
-                options.add("invisibility");
+                options.add("Mana shield");
+                options.add("Illusion");
+                options.add("Invisibility");
 
                 // Basic Healing Magic
-                System.out.print("Choose one healing spell (quick patch, restore, adrenaline): ");
-                options.add(console.nextLine().trim().toLowerCase());
-                
+                while(true) {
+                    System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
+
+                    String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
+                    if (!spell.equals("continue")) {
+                        options.add(spell);
+                        break;
+                    }
+                }
+
                 // Gear: Longsword and Shield
-                options.add("melee attack");
-                options.add("raise shield");
+                options.add("Melee attack");
+                options.add("Raise shield");
                 break;
 
             default:
@@ -196,6 +211,24 @@ public class CharacterCreation {
         }
         
         return speed;
+    }
+
+    private static String makeUserPick(Scanner console, String[] options) {
+        String userInput = console.nextLine().trim();
+        if (userInput.isEmpty())
+            return "continue"; // Restart loop bc it can't be empty
+        userInput = userInput.substring(0,1).toUpperCase() + userInput.substring(1).toLowerCase();
+        String choice = StringUtil.findOption(options, userInput);
+
+        if(choice.equals("Invalid Input")) {
+            String guess = StringUtil.interpretUserInput(options, userInput);
+            if(StringUtil.clarify(guess, console))
+                return guess;
+        } else {
+            return choice;
+        }
+        
+        return "continue";
     }
 
 }

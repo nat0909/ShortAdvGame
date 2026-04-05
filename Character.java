@@ -27,8 +27,12 @@ public class Character extends Creature {
         return name;
     }
 
+    public String getCharClass() {
+        return charClass;
+    }
+
     public String getInfo() {
-         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "/" + super.getMaxHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level; 
+         return "Name: " + name + "\nClass: " + charClass + "\nRace: " + race + "\nHealth: " + super.getHealth() + "/" + super.getMaxHealth() + "\nSpeed: " + super.getSpeed() + "\nLevel: " + level + "\nOptions: " + options.toString(); 
     }
 
     public String[] getOptions() {

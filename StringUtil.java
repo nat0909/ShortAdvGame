@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Scanner;
@@ -72,7 +73,7 @@ public class StringUtil {
      */
     public static boolean clarify(String guess, Scanner console) {
         if(guess.equals("Invalid Input")) {
-            System.out.println("You're input was unclear. Please retype your class. ");
+            System.out.println("You're input was unclear. Please retype your choice. ");
         } else {
             System.out.print("Did you mean " + guess + "? (y/n) ");
             String response = console.nextLine().trim().toLowerCase();
@@ -123,7 +124,25 @@ public class StringUtil {
         }
 
         return closest;
+    }
 
+    /**
+     * Returns the indices of numbers in the array that are within a specified range of a given current number.
+     *
+     * @param cur    The current number to compare against.
+     * @param range  The maximum distance from cur to consider.
+     * @param nums   An array of numbers to check.
+     * @return       An array of indices of numbers within the specified range of cur.
+     */
+    public static int[] returnNearbyNumsIndexs(int cur, int range, int[] nums) {
+        ArrayList<Integer> nearbyNums = new ArrayList<>();
+        for(int i = 0; i < nums.length; i++) {
+            if(Math.abs(nums[i] - cur) <= range) {
+                nearbyNums.add(i);
+            }
+        }
+
+        return nearbyNums.stream().mapToInt(i -> i).toArray(); // .mapToInt convers the Integers in the ArrayList to ints
     }
 
     /**
