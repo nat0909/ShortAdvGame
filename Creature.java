@@ -29,7 +29,7 @@ public class Creature {
         return speed;
     }
 
-    public boolean getHostile() {
+    public boolean isHostile() {
         return hostile;
     }
 
