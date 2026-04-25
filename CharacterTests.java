@@ -4,25 +4,24 @@ import org.junit.Test;
 
 public class CharacterTests {
     
-    private ArrayList<String> createBasicActions() {
+    private static ArrayList<String> createBasicActions() {
         ArrayList<String> actions = new ArrayList<>();
-        actions.add("move");
-        actions.add("end turn");
-        actions.add("fireball");
-        actions.add("lightening strike");
-        actions.add("thunder wave");
-        actions.add("illusion");
-        actions.add("relocate");
+        actions.add("Move");
+        actions.add("End turn");
+        actions.add("Fireball");
+        actions.add("Lightening strike");
+        actions.add("Thunder wave");
+        actions.add("Illusion");
+        actions.add("Relocate");
         return actions;
     }
 
-    private Character sampleCharacter() {
+    public static Character sampleCharacter() {
         return new Character("Aria", "Wizard", "Elf", 20, 8, createBasicActions());
     }
     
     @Test
     public void testConstructorAndGetters() {
-        ArrayList<String> actions = createBasicActions();
         Character c = sampleCharacter();
         String expected = "Name: Aria\nClass: Wizard\nRace: Elf\nHealth: 20/20\nSpeed: 8\nLevel: 1\nOptions: " + createBasicActions().toString();
         assertEquals(expected, c.getInfo());

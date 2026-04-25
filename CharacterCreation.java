@@ -73,77 +73,74 @@ public class CharacterCreation {
         options.add("Move");
         options.add("End turn");
 
-        switch (charClass) {
-            case "Wizard":
-                // Advanced Attack Magic
-                options.add("Fireball");
-                options.add("Lightening strike");
-                options.add("Thunder wave");
+        if (charClass == "Wizard") {
+            // Advanced Attack Magic
+            options.add("Fireball");
+            options.add("Lightening strike");
+            options.add("Thunder wave");
 
-                // Basic Defensive Magic
-                while(true) {
-                    System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
+            // Basic Defensive Magic
+            while(true) {
+                System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
 
-                    String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
-                    if (!spell.equals("continue")) {
-                        options.add(spell);
-                        break;
-                    }
+                String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
+                if (!spell.equals("continue")) {
+                    options.add(spell);
+                    break;
                 }
+            }
 
-                // Relocate Spell
-                options.add("Relocate");
+            // Relocate Spell
+            options.add("Relocate");
 
-                // Gear: Wand (can't melee)
-                break;
+            // Gear: Wand (can't melee)
 
-            case "Cleric":
-                // Basic Attack Magic
-                while(true) {
-                    System.out.print("Choose one attack spell (Fireball, Lightening strike, Thunder wave): ");
+        } else if (charClass == "Cleric") {
+            // Basic Attack Magic
+            while(true) {
+                System.out.print("Choose one attack spell (Fireball, Lightening strike, Thunder wave): ");
 
-                    String spell = makeUserPick(console, new String[]{"Fireball", "Lightening strike", "Thunder wave"});
-                    if (!spell.equals("continue")) {
-                        options.add(spell);
-                        break;
-                    }
+                String spell = makeUserPick(console, new String[]{"Fireball", "Lightening strike", "Thunder wave"});
+                if (!spell.equals("continue")) {
+                    options.add(spell);
+                    break;
                 }
+            }
 
-                // Advanced Healing Magic
-                options.add("Quick patch");
-                options.add("Restore");
-                options.add("Adrenaline");
+            // Advanced Healing Magic
+            options.add("Quick patch");
+            options.add("Restore");
+            options.add("Adrenaline");
 
-                // Basic Defensive Magic
-                while(true) {
-                    System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
-                    
-                    String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
-                    if (!spell.equals("continue")) {
-                        options.add(spell);
-                        break;
-                    }
-                }
+            // Basic Defensive Magic
+            while(true) {
+                System.out.print("Choose one defensive spell (Mana shield, Illusion, Invisibility): ");
                 
-                // Gear: Mace
-                options.add("Melee attack");
-                break;
+                String spell = makeUserPick(console, new String[]{"Mana shield", "Illusion", "Invisibility"});
+                if (!spell.equals("continue")) {
+                    options.add(spell);
+                    break;
+                }
+            }
+            
+            // Gear: Mace
+            options.add("Melee attack");
 
-            case "Warlock":
-                // Advanced Attack Magic
-                options.add("Fireball");
-                options.add("Lightening strike");
-                options.add("Thunder wave");
+        } else if (charClass == "Warlock") {
+            // Advanced Attack Magic
+            options.add("Fireball");
+            options.add("Lightening strike");
+            options.add("Thunder wave");
 
-                // Basic Healing Magic
-                while(true) {
-                    System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
+            // Basic Healing Magic
+            while(true) {
+                System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
 
-                    String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
-                    if (!spell.equals("continue")) {
-                        options.add(spell);
-                        break;
-                    }
+                String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
+                if (!spell.equals("continue")) {
+                    options.add(spell);
+                    break;
+                }
                 }
 
                 // Mind Control
@@ -151,32 +148,30 @@ public class CharacterCreation {
 
                 // Gear: Staff
                 options.add("Melee attack");
-                break;
 
-            case "Eldritch knight":
-                // Advanced Defensive Magic
-                options.add("Mana shield");
-                options.add("Illusion");
-                options.add("Invisibility");
+        } else if (charClass == "Eldritch knight") {
+            // Advanced Defensive Magic
+            options.add("Mana shield");
+            options.add("Illusion");
+            options.add("Invisibility");
 
-                // Basic Healing Magic
-                while(true) {
-                    System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
+            // Basic Healing Magic
+            while(true) {
+                System.out.print("Choose one healing spell (Quick patch, Restore, Adrenaline): ");
 
-                    String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
-                    if (!spell.equals("continue")) {
-                        options.add(spell);
-                        break;
-                    }
+                String spell = makeUserPick(console, new String[]{"Quick patch", "Restore", "Adrenaline"});
+                if (!spell.equals("continue")) {
+                    options.add(spell);
+                    break;
                 }
+            }
 
-                // Gear: Longsword and Shield
-                options.add("Melee attack");
-                options.add("Raise shield");
-                break;
+            // Gear: Longsword and Shield
+            options.add("Melee attack");
+            options.add("Raise shield");
 
-            default:
-                System.out.println("Invalid input. View the createPlayerOptions method in the CharacterCreation class. ");
+        } else {
+            System.out.println("Invalid input. View the createPlayerOptions method in the CharacterCreation class. ");
         }
 
         return options;

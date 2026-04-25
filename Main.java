@@ -12,7 +12,8 @@ public class Main {
     }
 
     public static Character createCharacter(Scanner s) {
-        Character character = CharacterCreation.create(s);
+        //Character character = CharacterCreation.create(s);
+        Character character = CharacterTests.sampleCharacter(); // Creates sample character, when finished testing delete this line and use the line above instead
         System.out.println(character.getInfo());
         return character;
     }

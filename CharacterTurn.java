@@ -11,7 +11,7 @@ public class CharacterTurn {
 
         while(!usedMovement || !usedAction || !usedBonusAction) {
             System.out.print("What would you like to do? ");
-            String input = console.nextLine().trim().toLowerCase(); // TODO: lowercase?
+            String input = console.nextLine().trim().toLowerCase();
             String[] options = character.getOptions();
 
             // Ensures it is a valid option
@@ -22,37 +22,36 @@ public class CharacterTurn {
                     continue; // Restarts the loop so the character can pick again if they say no
             }
 
-            switch (choice) {
-                case "Move":
-                    if(usedMovement) {
-                        System.out.println("You've already used your movement this turn.");
-                    } else {
-                        String moveResult = move(senario, console, character);
-                        if(moveResult.equals("End of Senario")) {
-                            return true; // End the senario
-                        } else if (moveResult.equals("Complete")) {
-                            usedMovement = true;
-                        }
+            if (choice == "Move") {
+                if(usedMovement) {
+                    System.out.println("You've already used your movement this turn.");
+                } else {
+                    String moveResult = move(senario, console, character);
+                    if(moveResult.equals("End of Senario")) {
+                        return true; // End the senario
+                    } else if (moveResult.equals("Complete")) {
+                        usedMovement = true;
                     }
-                case "Melee attack":
-                    if(usedAction) {
-                        System.out.println("You've already used your action this turn.");
-                    } else {
-                        String charClass = character.getCharClass();
-                        int[] positions = senario.getPositions();
-                        if(charClass.equals("Warlock")) {
-                            //int damage = Actions.warlockMeleeAttack(character.getLevel());
-                        } else if (charClass.equals("Cleric")) {
-                            //int damage = Actions.clericMeleeAttack(character.getLevel());
-                        } else if (charClass.equals("Eldritch Knight")) {
-                            //int damage = Actions.eldritchKnightMeleeAttack(character.getLevel());
-                        }
+                }
+            } else if (choice == "Melee attack") {
+                if(usedAction) {
+                    System.out.println("You've already used your action this turn.");
+                } else {
+                    String charClass = character.getCharClass();
+                    int[] positions = senario.getPositions();
+                    if(charClass.equals("Warlock")) {
+                        //int damage = Actions.warlockMeleeAttack(character.getLevel());
+                    } else if (charClass.equals("Cleric")) {
+                        //int damage = Actions.clericMeleeAttack(character.getLevel());
+                    } else if (charClass.equals("Eldritch Knight")) {
+                        //int damage = Actions.eldritchKnightMeleeAttack(character.getLevel());
                     }
-                case "End turn":
-                    usedMovement = true;
-                    usedAction = true;
-                    usedBonusAction = true;
-            default:
+                }
+            } else if (choice == "End turn") {
+                usedMovement = true;
+                usedAction = true;
+                usedBonusAction = true;
+            } else {
                 System.out.println("Please pick one of the options.");
             }
 

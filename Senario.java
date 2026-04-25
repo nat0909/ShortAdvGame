@@ -38,7 +38,12 @@ public class Senario {
         names = new String[creatures.length];
         for(int i = 0; i < creatures.length; i++) { 
             if(creatures[i] instanceof Character) {
-                names[i] = ((Character) creatures[i]).getName().substring(0,2);
+                String charName = ((Character) creatures[i]).getName();
+                if (charName.length() == 1) // If the character's name is only 1 character, it adds a underscore after (effects the drawing of the senario)
+                    charName += "_";
+                else // Otherwise, it will take the first two letters
+                    charName = charName.substring(0,2);
+                names[i] = charName;
             } else if(creatures[i] instanceof Goblin) {
                 names[i] = "G" + ((Goblin) creatures[i]).getNum();
             } else { // TODO: when adding new creature type, add them here as well
@@ -73,27 +78,18 @@ public class Senario {
     }
 
     public void drawSenario() {    
-        for(int square = 1; square <= 50; square++) {
+        for (int square = 1; square <= 50; square++) {
             // Search for creatures at the position of the current square
             boolean creatureFound = false;
-            for(int i = 0; i < positions.length; i++) {
-                if(positions[i] == square) {
-                    Creature creature = creatures[i];
-                    String name = "";
-                    if(creature instanceof Character) {
-                        name = ((Character) creature).getName().substring(0,2);
-                    } else if(creature instanceof Goblin) {
-                        name = "G" + ((Goblin) creature).getNum();
-                    } else { // TODO: when adding new creature type, add them here as well
-                        name = "error see drawSenario method in the Senario class";
-                    }
-
+            for (int i = 0; i < positions.length; i++) {
+                if (positions[i] == square) {
+                    String name = names[i];
                     System.out.print(name + " ");
                     creatureFound = true;
                     break;
                 }
             }
-            if(!creatureFound) {
+            if (!creatureFound) {
                 System.out.print("__ ");
             }
         }
